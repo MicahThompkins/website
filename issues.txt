@@ -1,3 +1,4 @@
 1.Need to fix the width of items when the page is long and narrow ie my name and the boxes going to wide
 2. fix the boxes, make them wider when they are in a vertical line
 3. maybe add active color for nav bar
+4. make my contact page look good

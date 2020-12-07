@@ -1,6 +1,34 @@
+:root{
+  --black: #353839;
+  --white: #fbeee4;
+}
+
+html,body {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+        overflow-x: hidden;
+        text-decoration: none;
+        -webkit-overflow-scrolling: touch;
+        overflow: inherit;
+        scroll-behavior: smooth;
+        background-color: var(--black);
+
+}
+.icons_container{
+  width: 100%;
+  height: 100%;
+
+}
 .icon_grid_wrapper{
   width: 100%;
   height: 40%;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center
+}
+.icon{
+  width:60%;
+  height:60%;
 }
