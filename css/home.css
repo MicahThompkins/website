@@ -1,3 +1,62 @@
-body{
-    margin:0;
+:root{
+  --black: #1a1a1a;
+  --white: #ffffff;
+}
+
+html,body {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+        overflow-x: hidden;
+        text-decoration: none;
+        -webkit-overflow-scrolling: touch;
+        overflow: inherit;
+        scroll-behavior: smooth;
+        background-color: var(--black);
+
+}
+
+.home_top_container{
+  background-color: var(--white);
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.home_top{
+  height: 100%;
+  width: 100%;
+  display: grid;
+  position: fixed;
+  justify-content: center;
+}
+
+/* TODO figure out when it is narrow and long how to make it not go out the sides*/
+.home_top_name{
+  width: 100%;
+  color:var(--white);
+  text-align: center;
+  font-weight: 900;
+  font-size: 20vh;
+  font-family: inherit;
+
+}
+.grid_wrapper{
+  width: 100%;
+  height: 40%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.section_card{
+  width: 40%;
+  margin-right: 50px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  border: 1px solid var(--white);
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  justify-content: center;
+  padding-left: 15px;
 }
