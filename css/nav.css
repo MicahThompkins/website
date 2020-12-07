@@ -1,8 +1,15 @@
 :root{
-  --black: #1a1a1a;
-  --white: #ffffff;
+  --black: #353839;
+  --white: #fbeee4;
   --grey: #ddd;
 }
+/*blacks: #353839 	(53,56,57)
+	#232b2b
+  #1a1a1a first
+
+  whites: #fbeee4
+  #ffffff first
+  */
 /* Add a black background color to the top navigation */
 .topnav {
   background-color: var(--black);

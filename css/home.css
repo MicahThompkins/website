@@ -1,6 +1,6 @@
 :root{
-  --black: #1a1a1a;
-  --white: #ffffff;
+  --black: #353839;
+  --white: #fbeee4;
 }
 
 html,body {
@@ -59,4 +59,6 @@ html,body {
   height: 100px;
   justify-content: center;
   padding-left: 15px;
+  text-decoration: none;
+  color: var(--white);
 }
