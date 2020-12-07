@@ -1,0 +1,6 @@
+.icon_grid_wrapper{
+  width: 100%;
+  height: 40%;
+  display: flex;
+  flex-wrap: wrap;
+}
