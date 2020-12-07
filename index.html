@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Home</title>
+<script src="jquery-3.5.1.js"></script>
+<link rel="stylesheet" type="text/css" href="css/home.css" media="screen"/>
+</head>
+<body>
+  <div id="nav-placeholder">
+
+  </div>
+
+  <script>
+  $(function(){
+    $("#nav-placeholder").load("nav.html");
+  });
+  </script>
+  <div class="home_container">
+    <div id="home_top" class="home_top">
+      <div class = "home_top_text">
+        <div class="home_top_name">micah</div>
+        <div class="home_top_name">thompkins</div>
+      </div>
+
+      <div id=card_view_block class="card_view_block">
+        <div class="grid_wrapper">
+          <a href="aboutme.html" class="section_card">About Me</a>
+          <a href="contactme.html" class="section_card">Contact Me</a>
+          <a href="projects.html" class="section_card">Projects</a>
+          <a href="resume.html" class="section_card">Resume</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+</html>
