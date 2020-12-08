@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Page Title</title>
+<title>Projects</title>
 <script src="jquery-3.5.1.js"></script>
+<script src="javascript/projects.js"
 <link rel="stylesheet" type="text/css" href="css/home.css" media="screen"/>
+<link rel="stylesheet" type="text/css" href="css/projects.css" media="screen"/>
 </head>
 <body>
   <div id="nav-placeholder">
@@ -15,6 +17,33 @@
     $("#nav-placeholder").load("nav.html");
   });
   </script>
-  <h1>Projects</h1>
+  <div class="projects_container">
+    <h1>Projects</h1>
+    <div class="projects_buttons_and_display_container">
+      <div class="buttons_container">
+        <button class="project_title_button" id="app_projects_button">App</button>
+        <button class="project_title_button" id="go_projects_button">GO</button>
+        <button class="project_title_button" id="scanner_projects_button">Scanner</button>
+        <button class="project_title_button" id="transport_projects_button">TCP</button>
+      </div>
+      <div class="project_displayer">
+        <h3 id="project_title">Network Scanner</h3>
+        <div class="word_item_container">
+          <p class="word">Description: </p>
+          <p class="item" id="description_text">  In my Introduction to Networking class we built a network scanner that given a list of domains would return information about the network. For this project I used Python 3, working within virtual environments and creating code that could be downloaded and ran on any machine through use of a pip requirements file. The scanner utilizes command line tools to do most of it’s lookups, and if the host machine is missing one of those command line tools the scanner still operates with graceful error handling. </p>
+        </div>
+        <div class="photo_carousel">
+        </div>
+        <div class="word_item_container">
+          <p class="word">Role: </p>
+          <p class="item" id="role_text">Lead Developer</p>
+        </div>
+        <div class="word_item_container">
+          <p class="word">Link: </p>
+          <a href="https://github.com/MicahThompkins/class_project1" class="link" id="project_link">  https://github.com/MicahThompkins/class_project1</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
