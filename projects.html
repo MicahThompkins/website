@@ -3,7 +3,7 @@
 <head>
 <title>Projects</title>
 <script src="jquery-3.5.1.js"></script>
-<script src="javascript/projects.js"
+<script src="javascript/projects.js"></script>
 <link rel="stylesheet" type="text/css" href="css/home.css" media="screen"/>
 <link rel="stylesheet" type="text/css" href="css/projects.css" media="screen"/>
 </head>
@@ -21,10 +21,10 @@
     <h1>Projects</h1>
     <div class="projects_buttons_and_display_container">
       <div class="buttons_container">
-        <button class="project_title_button" id="app_projects_button">App</button>
-        <button class="project_title_button" id="go_projects_button">GO</button>
-        <button class="project_title_button" id="scanner_projects_button">Scanner</button>
-        <button class="project_title_button" id="transport_projects_button">TCP</button>
+        <button class="project_title_button" id="app_projects_button" onclick="app_click()">App</button>
+        <button class="project_title_button" id="go_projects_button" onclick="go_click()">GO</button>
+        <button class="project_title_button" id="scanner_projects_button" onclick="scanner_click()">Scanner</button>
+        <button class="project_title_button" id="transport_projects_button" onclick="tcp_click()">TCP</button>
       </div>
       <div class="project_displayer">
         <h3 id="project_title">Network Scanner</h3>
