@@ -1,0 +1,8 @@
+.aboutme_container{
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+.me_photo{
+  border-radius: 10px;
+}

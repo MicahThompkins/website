@@ -1,4 +1,4 @@
-:root{
+/* :root{
   --black: #353839;
   --white: #fbeee4;
 }
@@ -15,7 +15,7 @@ html,body {
         scroll-behavior: smooth;
         background-color: var(--black);
 
-}
+} */
 .icons_container{
   width: 100%;
   height: 100%;
