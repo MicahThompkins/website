@@ -48,7 +48,11 @@ html,body {
 
 .section_card{
   width: 40%;
-  margin-right: 50px;
+  margin-right: 25px;
+  /* if i want it to go vertical then maybe replace back to margin right
+  or look into how to space out midlle items of a grid view and keep
+  them center */
+  margin-left: 25px;
   margin-bottom: 30px;
   border-radius: 10px;
   border: 1px solid var(--white);
@@ -56,7 +60,14 @@ html,body {
   flex-direction: column;
   height: 100px;
   justify-content: center;
-  padding-left: 15px;
+  /* padding-left: 15px; */
   text-decoration: none;
   color: var(--white);
+}
+.section_card:hover{
+  background: var(--white);
+  color: var(--black);
+}
+.section_card_titles{
+  text-align: center;
 }
