@@ -2,32 +2,29 @@
   --black: #353839;
   --white: #fbeee4;
 }
-
 html,body {
         width: 100%;
         height: 100%;
         margin: 0px;
         padding: 0px;
-        overflow-x: hidden;
         text-decoration: none;
         -webkit-overflow-scrolling: touch;
-        overflow: inherit;
+        overflow: scroll;
+        overflow-x: hidden;
         scroll-behavior: smooth;
         background-color: var(--black);
+        b
 
 }
 
-.home_top_container{
-  background-color: var(--white);
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
+.home_container{
+  height: 100%;
+  width: 100%;
 }
-
 .home_top{
   height: 100%;
   width: 100%;
   display: grid;
-  position: fixed;
   justify-content: center;
 }
 
@@ -37,7 +34,7 @@ html,body {
   color:var(--white);
   text-align: center;
   font-weight: 900;
-  font-size: 20vh;
+  font-size: 20vmin;
   font-family: inherit;
 
 }
@@ -46,6 +43,7 @@ html,body {
   height: 40%;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .section_card{
