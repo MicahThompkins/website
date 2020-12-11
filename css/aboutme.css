@@ -17,7 +17,7 @@
 }
 .aboutme_text{
   height:50vmax;
-  width:50vmax;
+  width:50vw;
   color: var(--white);
   justify-content: center;
   margin-left: auto;
