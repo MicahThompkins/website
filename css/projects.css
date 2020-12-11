@@ -59,10 +59,16 @@ p{
   /* TODO if time add a border to the projects stuff*/s
   border: 1px solid var(--white);
 }
-.photo_carousel{
-  background-color: var(--white);
-  width:35vmin;
-  height:45vmin;
+.photo_wrapper{
+  /* background-color: var(--white); */
+  width:80vw;
+  height:45vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.project_photo{
+  border: 0px;
 }
 .link{
   padding-top: 15px;
