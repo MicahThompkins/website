@@ -1,6 +1,10 @@
 :root{
-  --black: #353839;
-  --white: #fbeee4;
+  /* --black: #353839; */
+  /* --black: #2E2F2F; */
+  /* --black:#0e1111; */
+  --black:#282421;
+  --white: #FFFAFA;
+  /* --white: #fbeee4; */
   /* --black: black;
   --white: white; */
 }
