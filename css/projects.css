@@ -45,6 +45,9 @@ p{
   display: flex;
   justify-content: center;
 }
+/* .paragraphs_containter{
+
+} */
 .project_title_button:hover{
   background-color: var(--white);
   color: var(--black);
