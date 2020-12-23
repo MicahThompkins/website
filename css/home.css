@@ -1,13 +1,3 @@
-:root{
-  /* --black: #353839; */
-  /* --black: #2E2F2F; */
-  /* --black:#0e1111; */
-  --black:#282421;
-  --white: #FFFAFA;
-  /* --white: #fbeee4; */
-  /* --black: black;
-  --white: white; */
-}
 html,body {
         width: 100%;
         height: 100%;
@@ -22,7 +12,16 @@ html,body {
 
 
 }
-
+:root{
+  --black:#282421;
+  --white: #FFFAFA;
+  /* --black: #353839; */
+  /* --black: #2E2F2F; */
+  /* --black:#0e1111; */
+  /* --white: #fbeee4; */
+  /* --black: black;
+  --white: white; */
+}
 .home_container{
   height: 100%;
   width: 100%;
