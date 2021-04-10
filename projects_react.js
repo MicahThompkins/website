@@ -41,7 +41,6 @@ var ProjectsApp = function (_React$Component) {
                 return _this2.render();
             });
             console.log(type);
-            this.render();
         }
     }, {
         key: "handleAppClick",
@@ -76,6 +75,7 @@ var ProjectsApp = function (_React$Component) {
     }, {
         key: "render",
         value: function render() {
+            console.log("rendering projects app");
             return React.createElement(
                 "div",
                 { className: "projectApp" },
@@ -137,13 +137,11 @@ var ProjectInfoBody = function (_React$Component2) {
     _createClass(ProjectInfoBody, [{
         key: "render",
         value: function render() {
+            console.log("ProjectInfoBody this.props.active: ", this.props.active);
             return React.createElement(
                 "div",
                 null,
-                React.createElement(ProjectTitle, { active: this.props.active }),
-                React.createElement(ProjectDescription, { active: this.props.active }),
-                React.createElement(ProjectRole, { active: this.props.active }),
-                React.createElement(ProjectLink, { active: this.props.active })
+                React.createElement(ProjectTitle, { active: this.props.active })
             );
         }
     }]);
@@ -161,9 +159,10 @@ var ProjectTitle = function (_React$Component3) {
 
         _this4.titles = { "App": "Pattonville App Capstone Project", "Go": "Go Tournament Administrator", "Scanner": "Network Scanner", "Search": "News Search Engine", "TCP": "Reliable Transport Streamer over UDP", "Website": "Website"
         };
+        console.log("this.props.active: ", _this4.props.active);
         _this4.state = {
             active: props.active,
-            title: _this4.titles[_this4.state.active]
+            title: _this4.titles[_this4.props.active]
         };
 
         return _this4;
@@ -178,7 +177,7 @@ var ProjectTitle = function (_React$Component3) {
                 React.createElement(
                     "h2",
                     { className: "project_title" },
-                    this.state.title
+                    this.titles[this.props.active]
                 )
             );
         }
@@ -186,41 +185,14 @@ var ProjectTitle = function (_React$Component3) {
 
     return ProjectTitle;
 }(React.Component);
+// class ProjectDescription extends React.Component{
+// }
+// class ProjectRole extends React.Component{
+//
+// }
+// class ProjectLink extends React.Component{
+//
+// }
 
-var ProjectDescription = function (_React$Component4) {
-    _inherits(ProjectDescription, _React$Component4);
-
-    function ProjectDescription() {
-        _classCallCheck(this, ProjectDescription);
-
-        return _possibleConstructorReturn(this, (ProjectDescription.__proto__ || Object.getPrototypeOf(ProjectDescription)).apply(this, arguments));
-    }
-
-    return ProjectDescription;
-}(React.Component);
-
-var ProjectRole = function (_React$Component5) {
-    _inherits(ProjectRole, _React$Component5);
-
-    function ProjectRole() {
-        _classCallCheck(this, ProjectRole);
-
-        return _possibleConstructorReturn(this, (ProjectRole.__proto__ || Object.getPrototypeOf(ProjectRole)).apply(this, arguments));
-    }
-
-    return ProjectRole;
-}(React.Component);
-
-var ProjectLink = function (_React$Component6) {
-    _inherits(ProjectLink, _React$Component6);
-
-    function ProjectLink() {
-        _classCallCheck(this, ProjectLink);
-
-        return _possibleConstructorReturn(this, (ProjectLink.__proto__ || Object.getPrototypeOf(ProjectLink)).apply(this, arguments));
-    }
-
-    return ProjectLink;
-}(React.Component);
 
 ReactDOM.render(React.createElement(ProjectsApp, null), rootElement);

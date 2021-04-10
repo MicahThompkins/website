@@ -19,7 +19,6 @@ class ProjectsApp extends React.Component{
     handleClick(type){
         this.setState({active: type}, () => this.render());
         console.log(type);
-        this.render();
     }
     handleAppClick(){
        this.handleClick("App");
@@ -42,6 +41,7 @@ class ProjectsApp extends React.Component{
 
 
     render(){
+        console.log("rendering projects app");
         return (
             <div className="projectApp">
                 <div className="project_titles">
@@ -52,7 +52,6 @@ class ProjectsApp extends React.Component{
                     <button className="project_title_button" onClick={this.handleTCPClick}>TCP</button>
                     <button className="project_title_button" onClick={this.handleWebsiteClick}>Website</button>
                 </div>
-
                 <div className="projectInfoBody">
                     <ProjectInfoBody active={this.state.active}/>
                 </div>
@@ -66,12 +65,13 @@ class ProjectInfoBody extends React.Component {
         super(props);
     }
     render() {
+        console.log("ProjectInfoBody this.props.active: ", this.props.active);
         return(
             <div>
                 <ProjectTitle active={this.props.active}/>
-                <ProjectDescription active={this.props.active}/>
-                <ProjectRole active={this.props.active}/>
-                <ProjectLink active={this.props.active}/>
+                {/*<ProjectDescription active={this.props.active}/>*/}
+                {/*<ProjectRole active={this.props.active}/>*/}
+                {/*<ProjectLink active={this.props.active}/>*/}
             </div>
         )
     }
@@ -79,33 +79,34 @@ class ProjectInfoBody extends React.Component {
 class ProjectTitle extends React.Component{
     constructor(props){
         super(props);
-        this.titles ={"App": "Pattonville App Capstone Project", "Go": "Go Tournament Administrator", "Scanner":
+
+        this.titles = {"App": "Pattonville App Capstone Project", "Go": "Go Tournament Administrator", "Scanner":
                 "Network Scanner", "Search": "News Search Engine", "TCP": "Reliable Transport Streamer over UDP", "Website":
                 "Website"
         }
+        console.log("this.props.active: ", this.props.active);
         this.state = {
             active: props.active,
-            title: this.titles[this.state.active]
-        }
+            title: this.titles[this.props.active]
+        };
 
     }
     render (){
         return (
             <div className="project_title_container">
-                <h2 className="project_title">{this.state.title}</h2>
+                <h2 className="project_title">{this.titles[this.props.active]}</h2>
             </div>
         )
     }
 }
-class ProjectDescription extends React.Component{
-
-}
-class ProjectRole extends React.Component{
-
-}
-class ProjectLink extends React.Component{
-
-}
+// class ProjectDescription extends React.Component{
+// }
+// class ProjectRole extends React.Component{
+//
+// }
+// class ProjectLink extends React.Component{
+//
+// }
 ReactDOM.render(
     <ProjectsApp/>,
     rootElement
