@@ -69,9 +69,9 @@ class ProjectInfoBody extends React.Component {
         return(
             <div>
                 <ProjectTitle active={this.props.active}/>
-                {/*<ProjectDescription active={this.props.active}/>*/}
-                {/*<ProjectRole active={this.props.active}/>*/}
-                {/*<ProjectLink active={this.props.active}/>*/}
+                <ProjectDescription active={this.props.active}/>
+                <ProjectRole active={this.props.active}/>
+                <ProjectLink active={this.props.active}/>
             </div>
         )
     }
@@ -99,14 +99,85 @@ class ProjectTitle extends React.Component{
         )
     }
 }
-// class ProjectDescription extends React.Component{
-// }
-// class ProjectRole extends React.Component{
-//
-// }
-// class ProjectLink extends React.Component{
-//
-// }
+class ProjectDescription extends React.Component{
+    constructor(props){
+        super(props);
+        let app_desc_arr =["Over the course of one year I worked with seven other students to produce two apps, one for iOS and one for Android. We split into iOS and Android teams at the beginning of the year, but worked closely together to ensure similar design, within the given design standards of the two platforms, and features.  The year before we had all taken a class on Android development so we had learned the basics of mobile development and Android Development.  As a member of the iOS team I had to teach myself Swift in order to be able to develop for iOS as part of this project. ", "Throughout the course of the year we used principles from Agile development to produce features by deadlines. We met with our client, the board of education multiple times to present, and sent out surveys to parents, students and teachers about what features they wanted. We also formed a group of Alpha testers to test our app through various stages and give us feedback. As we continued to work we next released a semi-open beta, taking in feedback to figure out what features worked well and what didn’t and improving upon our design. Finally at the end of the year we held an open launch party for our app and presented on the process. ","I was a developer on the iOS team and the Documentation Lead. I worked to add data persistence across the app about which schools people needed to receive information from as well as created the calendar interface, among many other little tweaks. I also led the team in documenting our code and writing clean, reusable, readable code, in case another capstone group were to come along and maintain our project. "];
+        let go_desc_arr = ["In Software Construction I worked with a partner over the course of the quarter to build a Go tournament administrator. Go is the abstract strategy board game where the goal is to use stones to surround more territory than your opponent. We used pair programming to build this project, programming primarily on one computer and discussing our code choices step by step as we did so. We built the entire project from scratch, first starting with the point and stone objects before growing the project to the boards objects, the rule checker, the game referee, and finally the tournament administrator. Throughout the quarter we gave multiple code walks to our class explaining and defending our code choice to the professor and our fellow students. Our final project had a visual component, as well as the ability to run a tournament comprised of local and remote players. We presented our final project to our professor giving one last final code walk discussing the entire breadth of our project.", "In this project I learned a lot about modular code design and the importance and effectiveness of Unit testing. Because this was a project that started small and grew rather large we had to design our code in a very modular and scalable way with frequent testing in order to ensure all the moving pieces worked together well. Additionally as an added challenge our professors had us switch partners half way through, as part of this process we had to decide which code base to use, and what elements we wanted to take from the other unchosen base. All in all this project gave me a lot of skills and practice that I believe I can apply to the workforce.", ""];
+        let scanner_desc_arr = ["In my Introduction to Networking class we built a network scanner that given a list of domains would return information about the network. For this project I used Python 3, working within virtual environments and creating code that could be downloaded and ran on any machine through use of a pip requirements file. The scanner utilizes command line tools to do most of its lookups, and if the host machine is missing one of those command line tools the scanner still operates with graceful error handling.", "", ""];
+        let tcp_desc_arr = ["In my Introduction to Networking class we built a reliable streaming transport protocol on top of UDP. It was a simplified version of TCP. We wrote code to break the data into chunks, code to handle the reordering of out of order packets, and we also used acknowledgments and pipelining to handle packet loss. Finally we wrote code to handle corruption errors. At the end we had a simplified version of TCP that we could use to transfer data. I learned a lot about concurrency issues and how to design code to avoid deadlock doing this project. ", "", ""];
+        let search_desc_arr = ["News", "Search", "Engine"];
+        let website_desc_arr = ["Personal", "Portfolio", "Website"];
+        this.descriptions = {"App": app_desc_arr, "Go": go_desc_arr, "Scanner":
+                scanner_desc_arr, "Search": search_desc_arr, "TCP": tcp_desc_arr, "Website":
+                website_desc_arr
+        }
+        this.state = {
+            active: props.active,
+            description: this.descriptions[this.props.active]
+        };
+
+    }
+    render (){
+        return (
+            <div className="project_description_container">
+                <h4 className="project_info_titles">Description</h4>
+                <p className="project_description_paragraph">{this.descriptions[this.props.active][0]}</p>
+                <p className="project_description_paragraph">{this.descriptions[this.props.active][1]}</p>
+                <p className="project_description_paragraph">{this.descriptions[this.props.active][2]}</p>
+            </div>
+        )
+    }
+}
+class ProjectRole extends React.Component{
+    constructor(props){
+        super(props);
+
+        this.roles = {"App": "App Developer and Documentation Lead", "Go": "Co-Developer", "Scanner":
+                "Lead Developer", "Search": "Lead Developer", "TCP": "Lead Developer", "Website":
+                "Sole Designer and Developer"
+        }
+        console.log("this.props.active: ", this.props.active);
+        this.state = {
+            active: props.active,
+            role: this.roles[this.props.active]
+        };
+
+    }
+    render (){
+        return (
+            <div className="project_title_container">
+                <h4 className="project_info_titles">Role</h4>
+                <p className="project_info_lines">{this.roles[this.props.active]}</p>
+            </div>
+        )
+    }
+}
+class ProjectLink extends React.Component{
+    constructor(props){
+        super(props);
+
+        this.links = {"App": "https://github.com/Pattonville-App-Development-Team/ios-official", "Go": "https://github.com/MicahThompkins/go_project", "Scanner":
+                "https://github.com/MicahThompkins/class_project1", "Search": "https://youtu.be/D_mMU-N8FOs", "TCP": "I can not link to this project due to academic integrity purposes. ", "Website":
+                "www.micahthompkins.com"
+        }
+        var links_arr = ["https://github.com/Pattonville-App-Development-Team/ios-official", "https://github.com/MicahThompkins/go_project", "https://github.com/MicahThompkins/class_project1", "I can not link to this project due to academic integrity purposes. "]
+        console.log("this.props.active: ", this.props.active);
+        this.state = {
+            active: props.active,
+            link: this.links[this.props.active]
+        };
+
+    }
+    render (){
+        return (
+            <div className="project_title_container">
+                <h4 className="project_info_titles">Link</h4>
+                <p className="project_info_lines">{this.links[this.props.active]}</p>
+            </div>
+        )
+    }
+}
 ReactDOM.render(
     <ProjectsApp/>,
     rootElement
