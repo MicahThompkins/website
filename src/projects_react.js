@@ -12,11 +12,17 @@ class ProjectsApp extends React.Component{
         this.handleSearchClick = this.handleSearchClick.bind(this);
         this.handleWebsiteClick = this.handleWebsiteClick.bind(this);
         this.state = {
-            active : "App"
+            active : "App",
+            buttons: {"App": "project_title_button_active", "Go": "project_title_button", "Scanner": "project_title_button",
+            "Search": "project_title_button", "TCP": "project_title_button", "Website": "project_title_button"
+            }
         }
 
     }
     handleClick(type){
+        let newButtons = this.state.buttons;
+        newButtons[this.state.active] = "project_title_button";
+        newButtons[type] = "project_title_button_active";
         this.setState({active: type}, () => this.render());
         console.log(type);
     }
@@ -44,15 +50,17 @@ class ProjectsApp extends React.Component{
         console.log("rendering projects app");
         return (
             <div className="projectApp">
+
                 <div className="project_titles">
-                    <button className="project_title_button" onClick={this.handleAppClick}>App</button>
-                    <button className="project_title_button" onClick={this.handleGoClick}>Go</button>
-                    <button className="project_title_button" onClick={this.handleScannerClick}>Scanner</button>
-                    <button className="project_title_button" onClick={this.handleSearchClick}>Search</button>
-                    <button className="project_title_button" onClick={this.handleTCPClick}>TCP</button>
-                    <button className="project_title_button" onClick={this.handleWebsiteClick}>Website</button>
+                    <button className={this.state.buttons["App"]} onClick={this.handleAppClick}>App</button>
+                    <button className={this.state.buttons["Go"]} onClick={this.handleGoClick}>Go</button>
+                    <button className={this.state.buttons["Scanner"]} onClick={this.handleScannerClick}>Scanner</button>
+                    <button className={this.state.buttons["Search"]} onClick={this.handleSearchClick}>Search</button>
+                    <button className={this.state.buttons["TCP"]} onClick={this.handleTCPClick}>TCP</button>
+                    <button className={this.state.buttons["Website"]} onClick={this.handleWebsiteClick}>Website</button>
                 </div>
                 <div className="projectInfoBody">
+                    {/*<h1 id="projects_header">Projects</h1>*/}
                     <ProjectInfoBody active={this.state.active}/>
                 </div>
             </div>
@@ -80,7 +88,7 @@ class ProjectTitle extends React.Component{
     constructor(props){
         super(props);
 
-        this.titles = {"App": "Pattonville App Capstone Project", "Go": "Go Tournament Administrator", "Scanner":
+        this.titles = {"App": "Pattonville App Capstone", "Go": "Go Tournament Administrator", "Scanner":
                 "Network Scanner", "Search": "News Search Engine", "TCP": "Reliable Transport Streamer over UDP", "Website":
                 "Website"
         }

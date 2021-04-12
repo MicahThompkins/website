@@ -26,7 +26,10 @@ var ProjectsApp = function (_React$Component) {
         _this.handleSearchClick = _this.handleSearchClick.bind(_this);
         _this.handleWebsiteClick = _this.handleWebsiteClick.bind(_this);
         _this.state = {
-            active: "App"
+            active: "App",
+            buttons: { "App": "project_title_button_active", "Go": "project_title_button", "Scanner": "project_title_button",
+                "Search": "project_title_button", "TCP": "project_title_button", "Website": "project_title_button"
+            }
         };
 
         return _this;
@@ -37,6 +40,9 @@ var ProjectsApp = function (_React$Component) {
         value: function handleClick(type) {
             var _this2 = this;
 
+            var newButtons = this.state.buttons;
+            newButtons[this.state.active] = "project_title_button";
+            newButtons[type] = "project_title_button_active";
             this.setState({ active: type }, function () {
                 return _this2.render();
             });
@@ -84,32 +90,32 @@ var ProjectsApp = function (_React$Component) {
                     { className: "project_titles" },
                     React.createElement(
                         "button",
-                        { className: "project_title_button", onClick: this.handleAppClick },
+                        { className: this.state.buttons["App"], onClick: this.handleAppClick },
                         "App"
                     ),
                     React.createElement(
                         "button",
-                        { className: "project_title_button", onClick: this.handleGoClick },
+                        { className: this.state.buttons["Go"], onClick: this.handleGoClick },
                         "Go"
                     ),
                     React.createElement(
                         "button",
-                        { className: "project_title_button", onClick: this.handleScannerClick },
+                        { className: this.state.buttons["Scanner"], onClick: this.handleScannerClick },
                         "Scanner"
                     ),
                     React.createElement(
                         "button",
-                        { className: "project_title_button", onClick: this.handleSearchClick },
+                        { className: this.state.buttons["Search"], onClick: this.handleSearchClick },
                         "Search"
                     ),
                     React.createElement(
                         "button",
-                        { className: "project_title_button", onClick: this.handleTCPClick },
+                        { className: this.state.buttons["TCP"], onClick: this.handleTCPClick },
                         "TCP"
                     ),
                     React.createElement(
                         "button",
-                        { className: "project_title_button", onClick: this.handleWebsiteClick },
+                        { className: this.state.buttons["Website"], onClick: this.handleWebsiteClick },
                         "Website"
                     )
                 ),
@@ -160,7 +166,7 @@ var ProjectTitle = function (_React$Component3) {
 
         var _this4 = _possibleConstructorReturn(this, (ProjectTitle.__proto__ || Object.getPrototypeOf(ProjectTitle)).call(this, props));
 
-        _this4.titles = { "App": "Pattonville App Capstone Project", "Go": "Go Tournament Administrator", "Scanner": "Network Scanner", "Search": "News Search Engine", "TCP": "Reliable Transport Streamer over UDP", "Website": "Website"
+        _this4.titles = { "App": "Pattonville App Capstone", "Go": "Go Tournament Administrator", "Scanner": "Network Scanner", "Search": "News Search Engine", "TCP": "Reliable Transport Streamer over UDP", "Website": "Website"
         };
         console.log("this.props.active: ", _this4.props.active);
         _this4.state = {
