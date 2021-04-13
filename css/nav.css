@@ -16,9 +16,15 @@
   overflow: hidden;
   display: flex;
   justify-content: center;
+  margin: auto;
+  width: 375px;
+  padding-left: 3%;
   /* TODO check to see if this is weird looking*/
-  font-size: 2vw;
+
 }
+/*#myTopnav{*/
+/*  width: 100px;*/
+/*}*/
 
 /* Style the links inside the navigation bar */
 .topnav a {
@@ -26,8 +32,9 @@
   display: block;
   color: var(--white);
   text-align: center;
-  padding: 14px 16px;
+  padding: 14px 10px;
   text-decoration: none;
+  font-size: 15px;
 
 }
 
@@ -42,7 +49,7 @@
 
 /* Add an active class to highlight the current page */
 .topnav a.active {
-  background-color: var(--white);
+  background-color: grey;
   color: var(--black);
   /* border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px; */
@@ -52,4 +59,9 @@
 /* Hide the link that should open and close the topnav on small screens */
 .topnav .icon {
   display: none;
+}
+@media screen and (max-width: 320px){
+  .topnav {
+    width: 320px;
+  }
 }

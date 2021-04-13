@@ -73,7 +73,7 @@
   /*margin-right: 2vw;*/
   display: block;
   /*text-align: right;*/
-  font-size: 15px;
+  font-size: 13px;
 
 }
 
@@ -96,7 +96,7 @@
   /*margin-right: 2vw;*/
   display: block;
   /*text-align: right;*/
-  font-size: 15px;
+  font-size: 13px;
 
 
 }
@@ -116,6 +116,16 @@ h3 {
 
 p {
   color: var(--white);
+}
+
+.project_title_container{
+  display:grid;
+  justify-content: center;
+}
+.project_info_links {
+  text-align: center;
+  color: var(--white);
+
 }
 @media screen and (max-width: 480px){
   .projectInfoBody {
@@ -196,7 +206,7 @@ p {
     /*margin-right: 2vw;*/
     display: block;
     text-align: right;
-    font-size: 15px;
+    font-size: 13px;
 
   }
 
@@ -218,7 +228,7 @@ p {
     /*margin-right: 2vw;*/
     display: block;
     text-align: right;
-    font-size: 15px;
+    font-size: 13px;
 
   }
 
