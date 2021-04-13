@@ -207,8 +207,8 @@ var ProjectDescription = function (_React$Component4) {
         var go_desc_arr = ["In Software Construction I worked with a partner over the course of the quarter to build a Go tournament administrator. Go is the abstract strategy board game where the goal is to use stones to surround more territory than your opponent. We used pair programming to build this project, programming primarily on one computer and discussing our code choices step by step as we did so. We built the entire project from scratch, first starting with the point and stone objects before growing the project to the boards objects, the rule checker, the game referee, and finally the tournament administrator. Throughout the quarter we gave multiple code walks to our class explaining and defending our code choice to the professor and our fellow students. Our final project had a visual component, as well as the ability to run a tournament comprised of local and remote players. We presented our final project to our professor giving one last final code walk discussing the entire breadth of our project.", "In this project I learned a lot about modular code design and the importance and effectiveness of Unit testing. Because this was a project that started small and grew rather large we had to design our code in a very modular and scalable way with frequent testing in order to ensure all the moving pieces worked together well. Additionally as an added challenge our professors had us switch partners half way through, as part of this process we had to decide which code base to use, and what elements we wanted to take from the other unchosen base. All in all this project gave me a lot of skills and practice that I believe I can apply to the workforce.", ""];
         var scanner_desc_arr = ["In my Introduction to Networking class we built a network scanner that given a list of domains would return information about the network. For this project I used Python 3, working within virtual environments and creating code that could be downloaded and ran on any machine through use of a pip requirements file. The scanner utilizes command line tools to do most of its lookups, and if the host machine is missing one of those command line tools the scanner still operates with graceful error handling.", "", ""];
         var tcp_desc_arr = ["In my Introduction to Networking class we built a reliable streaming transport protocol on top of UDP. It was a simplified version of TCP. We wrote code to break the data into chunks, code to handle the reordering of out of order packets, and we also used acknowledgments and pipelining to handle packet loss. Finally we wrote code to handle corruption errors. At the end we had a simplified version of TCP that we could use to transfer data. I learned a lot about concurrency issues and how to design code to avoid deadlock doing this project. ", "", ""];
-        var search_desc_arr = ["News", "Search", "Engine"];
-        var website_desc_arr = ["Personal", "Portfolio", "Website"];
+        var search_desc_arr = ["Built a news search engine using AWS services (Elastic BeanStalk, ElasticSearch, Tomcat, EC2), Common Crawl web scraper, Java, and React.", "The process involved creating an ElasticSearch Index on AWS.  Then writing a java program that pulled Common Crawls most recent news archive and posted documents to it using the bulk api. I wrote a program implenting the API by taking in query paramaters from the URL to . And then I utilized that program to query the ElasticSearch index for news results and display those results in a React frontend similar to Google.", "Finally, I combined with a partner to mix and match our components and put all the programs together and have a working updating search engine. We recorded a video showcasing all the working parts before taking the project down because it would cost money to continue to host."];
+        var website_desc_arr = ["I decided to build this website for two reasons, one to have a personal website for the job search process, and two to practice and grow my web development skills. I created the first version in vanilla Javascript with HTML and CSS and hosted it on Github pages.  I then began thinking of adding an interactive for a class project to my website so I moved the website to pythonanywhere and bought a domain. ", "Winter quarter I focused on my classes and growing my skills in security, SQL, and AWS. I recently updated my projects page to be a React app to increase my react skills and also allow for easier future customization.", "I am currently working on adding my network scanner project to my website. After that I plan to add some of my photography work as well as class work from two of my classes this quarter that I am working extra on to ensure they match the design style and quality of my website."];
         _this5.descriptions = { "App": app_desc_arr, "Go": go_desc_arr, "Scanner": scanner_desc_arr, "Search": search_desc_arr, "TCP": tcp_desc_arr, "Website": website_desc_arr
         };
         _this5.state = {
@@ -303,9 +303,8 @@ var ProjectLink = function (_React$Component6) {
         var _this7 = _possibleConstructorReturn(this, (ProjectLink.__proto__ || Object.getPrototypeOf(ProjectLink)).call(this, props));
 
         _this7.links = { "App": "https://github.com/Pattonville-App-Development-Team/ios-official", "Go": "https://github.com/MicahThompkins/go_project", "Scanner": "https://github.com/MicahThompkins/class_project1", "Search": "https://youtu.be/D_mMU-N8FOs", "TCP": "I can not link to this project due to academic integrity purposes. ", "Website": "www.micahthompkins.com"
-        };
-        var links_arr = ["https://github.com/Pattonville-App-Development-Team/ios-official", "https://github.com/MicahThompkins/go_project", "https://github.com/MicahThompkins/class_project1", "I can not link to this project due to academic integrity purposes. "];
-        console.log("this.props.active: ", _this7.props.active);
+            // var links_arr = ["https://github.com/Pattonville-App-Development-Team/ios-official", "https://github.com/MicahThompkins/go_project", "https://github.com/MicahThompkins/class_project1", "I can not link to this project due to academic integrity purposes. "]
+        };console.log("this.props.active: ", _this7.props.active);
         _this7.state = {
             active: props.active,
             link: _this7.links[_this7.props.active]
@@ -317,20 +316,39 @@ var ProjectLink = function (_React$Component6) {
     _createClass(ProjectLink, [{
         key: "render",
         value: function render() {
-            return React.createElement(
-                "div",
-                { className: "project_title_container" },
-                React.createElement(
-                    "h4",
-                    { className: "project_info_titles" },
-                    "Link"
-                ),
-                React.createElement(
-                    "p",
-                    { className: "project_info_lines" },
-                    this.links[this.props.active]
-                )
-            );
+            if (this.props.active !== "TCP") {
+                return React.createElement(
+                    "div",
+                    { className: "project_title_container" },
+                    React.createElement(
+                        "h4",
+                        { className: "project_info_titles" },
+                        "Link"
+                    ),
+                    React.createElement(
+                        "a",
+                        { href: this.links[this.props.active],
+                            className: "project_info_links" },
+                        this.links[this.props.active]
+                    )
+                );
+            } else {
+                return React.createElement(
+                    "div",
+                    { className: "project_title_container" },
+                    React.createElement(
+                        "h4",
+                        { className: "project_info_titles" },
+                        "Link"
+                    ),
+                    React.createElement(
+                        "p",
+                        {
+                            className: "project_info_lines" },
+                        this.links[this.props.active]
+                    )
+                );
+            }
         }
     }]);
 

@@ -117,6 +117,16 @@ h3 {
 p {
   color: var(--white);
 }
+
+.project_title_container{
+  display:grid;
+  justify-content: center;
+}
+.project_info_links {
+  text-align: center;
+  color: var(--white);
+
+}
 @media screen and (max-width: 480px){
   .projectInfoBody {
     /*float: right;*/
