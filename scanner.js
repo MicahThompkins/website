@@ -305,7 +305,9 @@ var MethodsButton = function (_React$Component5) {
             if (json.output === null) {
                 alert("invalid url, please enter a valid url");
             } else {
-                this.setState({ output: json.output }, function () {
+                var outputToSet = json.output.toString();
+                outputToSet = outputToSet.replace(/,/g, "\n");
+                this.setState({ output: outputToSet }, function () {
                     return _this8.render();
                 });
                 // alert(method + ": " + json.output);
@@ -318,6 +320,11 @@ var MethodsButton = function (_React$Component5) {
             var _this9 = this;
 
             // let method = this.props.method;
+            if (this.state.domain !== this.props.domain) {
+                this.setState({ domain: this.props.domain, output: "" }, function () {
+                    return _this9.render();
+                });
+            }
             return React.createElement(
                 "div",
                 { className: "method_button_and_output" },

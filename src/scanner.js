@@ -234,7 +234,9 @@ class MethodsButton extends React.Component{
         if (json.output === null){
             alert("invalid url, please enter a valid url");
         } else{
-            this.setState({output:json.output}, ()=> this.render());
+            let outputToSet = json.output.toString();
+            outputToSet = outputToSet.replace(/,/g, "\n");
+            this.setState({output:outputToSet}, ()=> this.render());
             // alert(method + ": " + json.output);
             console.log(method + ": " + json.output);
 
@@ -242,6 +244,9 @@ class MethodsButton extends React.Component{
     }
     render(){
         // let method = this.props.method;
+        if (this.state.domain !== this.props.domain){
+            this.setState({domain: this.props.domain, output:""}, ()=>this.render());
+        }
         return(
             <div className="method_button_and_output">
                 <button className="scanner_button" onClick={() => this.handleClick(this.props.method)}>{this.props.method}</button>
