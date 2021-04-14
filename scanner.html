@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scanner</title>
+    <script src="jquery-3.5.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/home.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="css/nav.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="css/scanner.css" media="screen"/>
+</head>
+<body>
+    <div id="nav-placeholder">
+    </div>
+
+    <script>
+        $(function(){
+            $("#nav-placeholder").load("nav.html");
+        });
+    </script>
+    <div id="scanner_react_container"></div>
+    <script src="javascript/react.development.js"></script>
+    <script src="javascript/react-dom.development.js"></script>
+    <script src="scanner.js"></script>
+
+</body>
+</html>
