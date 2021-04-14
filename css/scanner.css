@@ -1,0 +1,42 @@
+
+#domain_input{
+    display: block;
+    margin: auto auto 3%;
+}
+.scanner_methods_list {
+    width: 75%;
+    margin: auto;
+}
+
+.scanner_method_list_item{
+    display: flex;
+    flex-direction: row;
+    border: var(--white);
+    border-width: thin;
+    border-style: solid;
+    width: 100%
+}
+.methods_button_explanation_container{
+    width: 66%;
+    border-right: var(--white);
+    border-right-width: thin;
+    border-right-style: solid;
+
+}
+.methods_button_explanation{
+    color:var(--white);
+
+}
+
+.method_button_and_output{
+    width: 33%;
+    display: flex;
+    flex-direction: row;
+}
+.scanner_button{
+    width: 50%;
+}
+.scanner_output{
+    width:50%;
+    color:var(--white);
+}

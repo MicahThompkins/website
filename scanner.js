@@ -103,7 +103,7 @@ var ScannerApp = function (_React$Component) {
             return React.createElement(
                 "div",
                 { className: "ScannerApp" },
-                React.createElement("input", { type: "text", value: this.state.domain, onChange: this.setDomain }),
+                React.createElement("input", { id: "domain_input", type: "text", value: this.state.domain, onChange: this.setDomain }),
                 React.createElement(MethodsList, { domain: this.state.domain })
             );
         }
@@ -168,6 +168,7 @@ var MethodsListItem = function (_React$Component3) {
             return React.createElement(
                 "div",
                 { className: "scanner_method_list_item" },
+                React.createElement(MethodsButtonExplanation, { method: this.props.method }),
                 React.createElement(MethodsButton, { domain: this.props.domain, method: this.props.method })
             );
         }
@@ -176,21 +177,61 @@ var MethodsListItem = function (_React$Component3) {
     return MethodsListItem;
 }(React.Component);
 
-var MethodsButton = function (_React$Component4) {
-    _inherits(MethodsButton, _React$Component4);
+var MethodsButtonExplanation = function (_React$Component4) {
+    _inherits(MethodsButtonExplanation, _React$Component4);
+
+    function MethodsButtonExplanation(props) {
+        _classCallCheck(this, MethodsButtonExplanation);
+
+        var _this5 = _possibleConstructorReturn(this, (MethodsButtonExplanation.__proto__ || Object.getPrototypeOf(MethodsButtonExplanation)).call(this, props));
+
+        _this5.method_explanations = { "ipv4_addresses": "A list of IPv4 addresses listed as DNS \"A\" records for the domain.",
+            "ipv6_addresses": "A list of IPv6 addresses listed as DNS \"AAAA\" records for the domain",
+            "rdns_names": "Lists the reverse dns names for the sites IPv4 addresses.",
+            "rtt_range": "Prints the shortest and longest round trip time (RTT) observed when contacting all the sites IPv4 addresses.",
+            "tls_versions": "Lists all versions of Transport Layer Security (TLS/SSL) supported by the server",
+            "http_server": "The web server software reported in the Server Header of the HTTP response. If there is no server header in the response \"No Server Header\" is shown.",
+            "insecure_http": "Returns a JSON boolean indicating whether the website listens for unencrypted HTTP requests on port 80.",
+            "redirect_to_https": "Returns a JSON boolean indicating whether unencrypted HTTP requests on port 80 are redirected to HTTPS requests on port 443. After 10 redirects, it gives up and says false.",
+            "hsts": "Returns a JSON boolean indicating whether the website has enabled HTTP Strict Transport Security",
+            "root_ca": "Lists the originization name of the root certificate authority (CA) at the base of the chain of trust for validating this server's public key.}"
+        };
+        return _this5;
+    }
+
+    _createClass(MethodsButtonExplanation, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "div",
+                { className: "methods_button_explanation_container" },
+                React.createElement(
+                    "p",
+                    { className: "methods_button_explanation" },
+                    this.method_explanations[this.props.method]
+                )
+            );
+        }
+    }]);
+
+    return MethodsButtonExplanation;
+}(React.Component);
+
+var MethodsButton = function (_React$Component5) {
+    _inherits(MethodsButton, _React$Component5);
 
     function MethodsButton(props) {
         _classCallCheck(this, MethodsButton);
 
-        var _this5 = _possibleConstructorReturn(this, (MethodsButton.__proto__ || Object.getPrototypeOf(MethodsButton)).call(this, props));
+        var _this6 = _possibleConstructorReturn(this, (MethodsButton.__proto__ || Object.getPrototypeOf(MethodsButton)).call(this, props));
 
-        _this5.handleCLick = _this5.handleClick.bind(_this5);
-        _this5.processJson = _this5.processJson.bind(_this5);
-        // this.state ={
-        //     domain: this.props['domain'],
-        //     method: this.props['method']
-        // }
-        return _this5;
+        _this6.handleCLick = _this6.handleClick.bind(_this6);
+        _this6.processJson = _this6.processJson.bind(_this6);
+        _this6.state = {
+            domain: _this6.props['domain'],
+            output: ""
+        };
+        return _this6;
     }
 
     _createClass(MethodsButton, [{
@@ -231,7 +272,7 @@ var MethodsButton = function (_React$Component4) {
     }, {
         key: "handleClick",
         value: function handleClick(method) {
-            var _this6 = this;
+            var _this7 = this;
 
             console.log(method);
             var domainToSend = this.checkDomain();
@@ -248,7 +289,7 @@ var MethodsButton = function (_React$Component4) {
                 .then(function (response) {
                     return response.json();
                 }).then(function (json) {
-                    return _this6.processJson(json, method);
+                    return _this7.processJson(json, method);
                 });
                 console.log("afte fetch");
             } else {
@@ -259,27 +300,38 @@ var MethodsButton = function (_React$Component4) {
     }, {
         key: "processJson",
         value: function processJson(json, method) {
+            var _this8 = this;
+
             if (json.output === null) {
                 alert("invalid url, please enter a valid url");
             } else {
-                alert(method + ": " + json.output);
+                this.setState({ output: json.output }, function () {
+                    return _this8.render();
+                });
+                // alert(method + ": " + json.output);
+                console.log(method + ": " + json.output);
             }
         }
     }, {
         key: "render",
         value: function render() {
-            var _this7 = this;
+            var _this9 = this;
 
             // let method = this.props.method;
             return React.createElement(
                 "div",
-                null,
+                { className: "method_button_and_output" },
                 React.createElement(
                     "button",
                     { className: "scanner_button", onClick: function onClick() {
-                            return _this7.handleClick(_this7.props.method);
+                            return _this9.handleClick(_this9.props.method);
                         } },
                     this.props.method
+                ),
+                React.createElement(
+                    "p",
+                    { className: "scanner_output" },
+                    this.state.output
                 )
             );
         }
@@ -287,5 +339,6 @@ var MethodsButton = function (_React$Component4) {
 
     return MethodsButton;
 }(React.Component);
+// class MethodsButtonOutput
 
 ReactDOM.render(React.createElement(ScannerApp, null), rootElement);

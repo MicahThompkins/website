@@ -78,7 +78,7 @@ class ScannerApp extends React.Component{
     render(){
         return(
             <div className ="ScannerApp">
-                <input type="text" value = {this.state.domain} onChange={this.setDomain}/>
+                <input id="domain_input" type="text" value = {this.state.domain} onChange={this.setDomain}/>
                 <MethodsList domain = {this.state.domain}/>
                 {/*<div className="scanner_buttons">*/}
                 {/*    <button className="scanner_buttons" onClick={() => this.handleClick('ipv4_addresses')}>IPv4</button>*/}
@@ -133,20 +133,46 @@ class MethodsListItem extends React.Component{
     render() {
         return (
             <div className="scanner_method_list_item">
+                <MethodsButtonExplanation method = {this.props.method}/>
                 <MethodsButton domain={this.props.domain} method ={this.props.method}/>
             </div>
         )
     }
 }
+class MethodsButtonExplanation extends React.Component{
+    constructor(props) {
+        super(props);
+        this.method_explanations = {"ipv4_addresses": "A list of IPv4 addresses listed as DNS \"A\" records for the domain.",
+            "ipv6_addresses": "A list of IPv6 addresses listed as DNS \"AAAA\" records for the domain",
+            "rdns_names": "Lists the reverse dns names for the sites IPv4 addresses.",
+            "rtt_range": "Prints the shortest and longest round trip time (RTT) observed when contacting all the sites IPv4 addresses.",
+            "tls_versions": "Lists all versions of Transport Layer Security (TLS/SSL) supported by the server",
+            "http_server": "The web server software reported in the Server Header of the HTTP response. If there is no server header in the response \"No Server Header\" is shown.",
+            "insecure_http": "Returns a JSON boolean indicating whether the website listens for unencrypted HTTP requests on port 80.",
+            "redirect_to_https": "Returns a JSON boolean indicating whether unencrypted HTTP requests on port 80 are redirected to HTTPS requests on port 443. After 10 redirects, it gives up and says false.",
+            "hsts": "Returns a JSON boolean indicating whether the website has enabled HTTP Strict Transport Security",
+            "root_ca": "Lists the originization name of the root certificate authority (CA) at the base of the chain of trust for validating this server's public key.}"
+    }
+    }
+    render() {
+        return (
+            <div className="methods_button_explanation_container">
+                <p className="methods_button_explanation">{this.method_explanations[this.props.method]}</p>
+            </div>
+        )
+    }
+
+}
+
 class MethodsButton extends React.Component{
     constructor(props) {
         super(props);
         this.handleCLick = this.handleClick.bind(this);
         this.processJson = this.processJson.bind(this);
-        // this.state ={
-        //     domain: this.props['domain'],
-        //     method: this.props['method']
-        // }
+        this.state ={
+            domain: this.props['domain'],
+            output: ""
+        }
     }
 
     isValidUrl(inputUrl){
@@ -208,18 +234,24 @@ class MethodsButton extends React.Component{
         if (json.output === null){
             alert("invalid url, please enter a valid url");
         } else{
-            alert(method + ": " + json.output);
+            this.setState({output:json.output}, ()=> this.render());
+            // alert(method + ": " + json.output);
+            console.log(method + ": " + json.output);
+
         }
     }
     render(){
         // let method = this.props.method;
         return(
-            <div>
+            <div className="method_button_and_output">
                 <button className="scanner_button" onClick={() => this.handleClick(this.props.method)}>{this.props.method}</button>
+                <p className="scanner_output">{this.state.output}</p>
+                {/*<MethodsButtonOutput output = {this.state.output}/>*/}
             </div>
         )
     }
 }
+// class MethodsButtonOutput
 
 ReactDOM.render(
     <ScannerApp/>,
