@@ -78,6 +78,7 @@ class ScannerApp extends React.Component{
     render(){
         return(
             <div className ="ScannerApp">
+                <HeaderInfo/>
                 <input id="domain_input" type="text" value = {this.state.domain} onChange={this.setDomain}/>
                 <MethodsList domain = {this.state.domain}/>
                 {/*<div className="scanner_buttons">*/}
@@ -100,7 +101,19 @@ class ScannerApp extends React.Component{
         )
     }
 }
-// function MethodsButtons(props){
+class HeaderInfo extends React.Component{
+    constructor(props) {
+        super(props);
+    }
+    render(){
+        return(
+            <div className="header_info">
+                <h2 className="scanner_title_heading">Scanner Web App</h2>
+                <p className="scanner_header_info">This is my network scanner project. Please input a domain name and ending (like youtube.com) and then select the information you want to learn about.</p>
+            </div>
+        )
+    }
+}// function MethodsButtons(props){
 class MethodsList extends React.Component{
     constructor(props) {
         super(props);
@@ -161,7 +174,7 @@ class MethodsButtonExplanation extends React.Component{
             "insecure_http": "Returns a JSON boolean indicating whether the website listens for unencrypted HTTP requests on port 80.",
             "redirect_to_https": "Returns a JSON boolean indicating whether unencrypted HTTP requests on port 80 are redirected to HTTPS requests on port 443. After 10 redirects, it gives up and says false.",
             "hsts": "Returns a JSON boolean indicating whether the website has enabled HTTP Strict Transport Security",
-            "root_ca": "Lists the originization name of the root certificate authority (CA) at the base of the chain of trust for validating this server's public key.}"
+            "root_ca": "Lists the originization name of the root certificate authority (CA) at the base of the chain of trust for validating this server's public key."
         }
     }
     render() {
@@ -179,6 +192,15 @@ class MethodsButton extends React.Component{
         super(props);
         this.handleCLick = this.handleClick.bind(this);
         this.processJson = this.processJson.bind(this);
+        this.method_titles = {"ipv4_addresses": "IPv4",
+            "ipv6_addresses": "IPv6",
+            "rdns_names": "RDNS",
+            "http_server": "Server",
+            "insecure_http": "Insecure?",
+            "redirect_to_https": "Redirects",
+            "hsts": "HSTS",
+            "root_ca": "Root Ca"
+        }
         this.state ={
             domain: this.props['domain'],
             output: ""
@@ -189,9 +211,14 @@ class MethodsButton extends React.Component{
 
         if(inputUrl.includes(".")) {
             try {
+                console.log("inputUrl: " + inputUrl)
                 const url = new URL(inputUrl)
                 if (url.protocol === "http:" || url.protocol === "https:") {
-                    return url.hostname;
+                    console.log(url.hostname)
+                    console.log("length: "+ url.hostname.length)
+                    let returnString = url.hostname
+                    // return url.hostname;
+                    return returnString;
                 } else{
                     return false;
                 }
@@ -206,51 +233,72 @@ class MethodsButton extends React.Component{
         //TODO add more in depth error checking
 
         let currDomain = this.props.domain
-        console.log(this.props.domain)
+        // console.log(this.props.domain)
         if (currDomain === ""){
             return false;
-        } else if( (currDomain.substring(0,7) === "http://") || currDomain.substring(0,8) === "https://" ){
-            return this.isValidUrl(currDomain);
-        } else {
-            currDomain = "http://" + currDomain;
-            return this.isValidUrl(currDomain);
         }
+        else if( (currDomain.substring(0,7) === "http://") || currDomain.substring(0,8) === "https://" ){
+            console.log("in http://")
+            // return this.isValidUrl(currDomain);
+
+            return 2;
+        }
+        //else {
+        //         //     currDomain = "http://" + currDomain;
+        //         //     return this.isValidUrl(currDomain);
+        //         // }
+        // if (currDomain.substring(0,7) === "http://"){
+        //     currDomain = currDomain.substring(7);
+        //     console.log("strippedString: " + currDomain);
+        // }
+        // if (currDomain.substring(0,8) === "https://" ){
+        //     currDomain = currDomain.substring(8);
+        //     console.log("strippedString: " + currDomain);
+        // }
+        currDomain = "http://" + currDomain;
+        return this.isValidUrl(currDomain);
     }
     handleClick(method){
-        console.log(method);
-        let domainToSend = this.checkDomain();
-        if (domainToSend) {
-            console.log("this.props.domain: " + this.props.domain + " method: " + this.props.method);
-            const requestData = {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-                body: JSON.stringify({"domain": this.props.domain, "method": method})
+        // console.log(method);
+        if(this.state.output === "") {
+            let domainToSend = this.checkDomain();
+            console.log("domainToSend: " + domainToSend);
+            if (domainToSend !== 2 && domainToSend !== false) {
+                // console.log("this.props.domain: " + this.props.domain + " method: " + this.props.method);
+                const requestData = {
+                    method: 'POST',
+                    headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                    body: JSON.stringify({"domain": this.props.domain, "method": method})
 
+                }
+                // const response = await fetch()
+                // console.log("before Fetch")
+
+                // fetch('http://127.0.0.1:5000/', requestData)
+                fetch('https://scanner-webserver.herokuapp.com/', requestData)
+                    // .then(response =>response.json())
+                    .then(response => response.json())
+                    .then(json => this.processJson(json, method))
+                // console.log("after fetch")
+            } else if (domainToSend === 2){
+                alert("Please do not input http:// or https://");
             }
-            // const response = await fetch()
-            console.log("before Fetch")
-
-            // fetch('http://127.0.0.1:5000/', requestData)
-            fetch('https://scanner-webserver.herokuapp.com/', requestData)
-                // .then(response =>response.json())
-                .then(response => response.json())
-                .then(json => this.processJson(json, method))
-            console.log("after fetch")
-        } else {
-            alert("invalid url, please enter a valid url");
+            else {
+                alert("Invalid url, please enter a valid url");
+            }
         }
         // console.log(response)
     }
 
     processJson(json, method){
         if (json.output === null){
-            alert("invalid url, please enter a valid url");
+            alert("Server can't use that url, please enter a different url");
         } else{
             let outputToSet = json.output.toString();
             outputToSet = outputToSet.replace(/,/g, "\n");
             this.setState({output:outputToSet}, ()=> this.render());
             // alert(method + ": " + json.output);
-            console.log(method + ": " + json.output);
+            // console.log(method + ": " + json.output);
 
         }
     }
@@ -261,7 +309,7 @@ class MethodsButton extends React.Component{
         }
         return(
             <div className="method_button_and_output">
-                <button className="scanner_button" onClick={() => this.handleClick(this.props.method)}>{this.props.method}</button>
+                <button className="scanner_button" onClick={() => this.handleClick(this.props.method)}>{this.method_titles[this.props.method]}</button>
                 <p className="scanner_output">{this.state.output}</p>
                 {/*<MethodsButtonOutput output = {this.state.output}/>*/}
             </div>

@@ -3,6 +3,17 @@
     display: block;
     margin: auto auto 3%;
 }
+.header_info{
+    width: 75%;
+    margin: auto;
+    text-align: center;
+}
+.scanner_title_heading{
+    color:var(--white);
+}
+.scanner_header_info{
+    color:var(--white);
+}
 .scanner_methods_list {
     width: 75%;
     margin: auto;
@@ -30,13 +41,21 @@
 
 .method_button_and_output{
     width: 33%;
+    word-wrap: break-word;
     display: flex;
     flex-direction: row;
 }
 .scanner_button{
-    width: 50%;
+    width: 40%;
+    background-color: var(--white);
+    color: var(--black);
+    border: thin var(--black);
+}
+.scanner_button:hover{
+    background-color: grey;
+    color: var(--white);
 }
 .scanner_output{
-    width:50%;
+    width:60%;
     color:var(--white);
 }

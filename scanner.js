@@ -103,6 +103,7 @@ var ScannerApp = function (_React$Component) {
             return React.createElement(
                 "div",
                 { className: "ScannerApp" },
+                React.createElement(HeaderInfo, null),
                 React.createElement("input", { id: "domain_input", type: "text", value: this.state.domain, onChange: this.setDomain }),
                 React.createElement(MethodsList, { domain: this.state.domain })
             );
@@ -111,19 +112,50 @@ var ScannerApp = function (_React$Component) {
 
     return ScannerApp;
 }(React.Component);
-// function MethodsButtons(props){
+
+var HeaderInfo = function (_React$Component2) {
+    _inherits(HeaderInfo, _React$Component2);
+
+    function HeaderInfo(props) {
+        _classCallCheck(this, HeaderInfo);
+
+        return _possibleConstructorReturn(this, (HeaderInfo.__proto__ || Object.getPrototypeOf(HeaderInfo)).call(this, props));
+    }
+
+    _createClass(HeaderInfo, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "div",
+                { className: "header_info" },
+                React.createElement(
+                    "h2",
+                    { className: "scanner_title_heading" },
+                    "Scanner Web App"
+                ),
+                React.createElement(
+                    "p",
+                    { className: "scanner_header_info" },
+                    "This is my network scanner project. Please input a domain name and ending (like youtube.com) and then select the information you want to learn about."
+                )
+            );
+        }
+    }]);
+
+    return HeaderInfo;
+}(React.Component); // function MethodsButtons(props){
 
 
-var MethodsList = function (_React$Component2) {
-    _inherits(MethodsList, _React$Component2);
+var MethodsList = function (_React$Component3) {
+    _inherits(MethodsList, _React$Component3);
 
     function MethodsList(props) {
         _classCallCheck(this, MethodsList);
 
-        var _this3 = _possibleConstructorReturn(this, (MethodsList.__proto__ || Object.getPrototypeOf(MethodsList)).call(this, props));
+        var _this4 = _possibleConstructorReturn(this, (MethodsList.__proto__ || Object.getPrototypeOf(MethodsList)).call(this, props));
 
         console.log("In methods buttons props.domain: " + props.domain);
-        return _this3;
+        return _this4;
     }
 
     _createClass(MethodsList, [{
@@ -148,16 +180,16 @@ var MethodsList = function (_React$Component2) {
     return MethodsList;
 }(React.Component);
 
-var MethodsListItem = function (_React$Component3) {
-    _inherits(MethodsListItem, _React$Component3);
+var MethodsListItem = function (_React$Component4) {
+    _inherits(MethodsListItem, _React$Component4);
 
     function MethodsListItem(props) {
         _classCallCheck(this, MethodsListItem);
 
-        var _this4 = _possibleConstructorReturn(this, (MethodsListItem.__proto__ || Object.getPrototypeOf(MethodsListItem)).call(this, props));
+        var _this5 = _possibleConstructorReturn(this, (MethodsListItem.__proto__ || Object.getPrototypeOf(MethodsListItem)).call(this, props));
 
         console.log("In methods buttons props.domain: " + props.domain);
-        return _this4;
+        return _this5;
     }
 
     _createClass(MethodsListItem, [{
@@ -175,8 +207,8 @@ var MethodsListItem = function (_React$Component3) {
     return MethodsListItem;
 }(React.Component);
 
-var MethodsButtonExplanation = function (_React$Component4) {
-    _inherits(MethodsButtonExplanation, _React$Component4);
+var MethodsButtonExplanation = function (_React$Component5) {
+    _inherits(MethodsButtonExplanation, _React$Component5);
 
     function MethodsButtonExplanation(props) {
         _classCallCheck(this, MethodsButtonExplanation);
@@ -193,18 +225,18 @@ var MethodsButtonExplanation = function (_React$Component4) {
         //     "hsts": "Returns a JSON boolean indicating whether the website has enabled HTTP Strict Transport Security",
         //     "root_ca": "Lists the originization name of the root certificate authority (CA) at the base of the chain of trust for validating this server's public key.}"
         // }
-        var _this5 = _possibleConstructorReturn(this, (MethodsButtonExplanation.__proto__ || Object.getPrototypeOf(MethodsButtonExplanation)).call(this, props));
+        var _this6 = _possibleConstructorReturn(this, (MethodsButtonExplanation.__proto__ || Object.getPrototypeOf(MethodsButtonExplanation)).call(this, props));
 
-        _this5.method_explanations = { "ipv4_addresses": "A list of IPv4 addresses listed as DNS \"A\" records for the domain.",
+        _this6.method_explanations = { "ipv4_addresses": "A list of IPv4 addresses listed as DNS \"A\" records for the domain.",
             "ipv6_addresses": "A list of IPv6 addresses listed as DNS \"AAAA\" records for the domain",
             "rdns_names": "Lists the reverse dns names for the sites IPv4 addresses.",
             "http_server": "The web server software reported in the Server Header of the HTTP response. If there is no server header in the response \"No Server Header\" is shown.",
             "insecure_http": "Returns a JSON boolean indicating whether the website listens for unencrypted HTTP requests on port 80.",
             "redirect_to_https": "Returns a JSON boolean indicating whether unencrypted HTTP requests on port 80 are redirected to HTTPS requests on port 443. After 10 redirects, it gives up and says false.",
             "hsts": "Returns a JSON boolean indicating whether the website has enabled HTTP Strict Transport Security",
-            "root_ca": "Lists the originization name of the root certificate authority (CA) at the base of the chain of trust for validating this server's public key.}"
+            "root_ca": "Lists the originization name of the root certificate authority (CA) at the base of the chain of trust for validating this server's public key."
         };
-        return _this5;
+        return _this6;
     }
 
     _createClass(MethodsButtonExplanation, [{
@@ -225,21 +257,30 @@ var MethodsButtonExplanation = function (_React$Component4) {
     return MethodsButtonExplanation;
 }(React.Component);
 
-var MethodsButton = function (_React$Component5) {
-    _inherits(MethodsButton, _React$Component5);
+var MethodsButton = function (_React$Component6) {
+    _inherits(MethodsButton, _React$Component6);
 
     function MethodsButton(props) {
         _classCallCheck(this, MethodsButton);
 
-        var _this6 = _possibleConstructorReturn(this, (MethodsButton.__proto__ || Object.getPrototypeOf(MethodsButton)).call(this, props));
+        var _this7 = _possibleConstructorReturn(this, (MethodsButton.__proto__ || Object.getPrototypeOf(MethodsButton)).call(this, props));
 
-        _this6.handleCLick = _this6.handleClick.bind(_this6);
-        _this6.processJson = _this6.processJson.bind(_this6);
-        _this6.state = {
-            domain: _this6.props['domain'],
+        _this7.handleCLick = _this7.handleClick.bind(_this7);
+        _this7.processJson = _this7.processJson.bind(_this7);
+        _this7.method_titles = { "ipv4_addresses": "IPv4",
+            "ipv6_addresses": "IPv6",
+            "rdns_names": "RDNS",
+            "http_server": "Server",
+            "insecure_http": "Insecure?",
+            "redirect_to_https": "Redirects",
+            "hsts": "HSTS",
+            "root_ca": "Root Ca"
+        };
+        _this7.state = {
+            domain: _this7.props['domain'],
             output: ""
         };
-        return _this6;
+        return _this7;
     }
 
     _createClass(MethodsButton, [{
@@ -248,9 +289,14 @@ var MethodsButton = function (_React$Component5) {
 
             if (inputUrl.includes(".")) {
                 try {
+                    console.log("inputUrl: " + inputUrl);
                     var url = new URL(inputUrl);
                     if (url.protocol === "http:" || url.protocol === "https:") {
-                        return url.hostname;
+                        console.log(url.hostname);
+                        console.log("length: " + url.hostname.length);
+                        var returnString = url.hostname;
+                        // return url.hostname;
+                        return returnString;
                     } else {
                         return false;
                     }
@@ -267,72 +313,91 @@ var MethodsButton = function (_React$Component5) {
             //TODO add more in depth error checking
 
             var currDomain = this.props.domain;
-            console.log(this.props.domain);
+            // console.log(this.props.domain)
             if (currDomain === "") {
                 return false;
             } else if (currDomain.substring(0, 7) === "http://" || currDomain.substring(0, 8) === "https://") {
-                return this.isValidUrl(currDomain);
-            } else {
-                currDomain = "http://" + currDomain;
-                return this.isValidUrl(currDomain);
+                console.log("in http://");
+                // return this.isValidUrl(currDomain);
+
+                return 2;
             }
+            //else {
+            //         //     currDomain = "http://" + currDomain;
+            //         //     return this.isValidUrl(currDomain);
+            //         // }
+            // if (currDomain.substring(0,7) === "http://"){
+            //     currDomain = currDomain.substring(7);
+            //     console.log("strippedString: " + currDomain);
+            // }
+            // if (currDomain.substring(0,8) === "https://" ){
+            //     currDomain = currDomain.substring(8);
+            //     console.log("strippedString: " + currDomain);
+            // }
+            currDomain = "http://" + currDomain;
+            return this.isValidUrl(currDomain);
         }
     }, {
         key: "handleClick",
         value: function handleClick(method) {
-            var _this7 = this;
+            var _this8 = this;
 
-            console.log(method);
-            var domainToSend = this.checkDomain();
-            if (domainToSend) {
-                console.log("this.props.domain: " + this.props.domain + " method: " + this.props.method);
-                var requestData = {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-                    body: JSON.stringify({ "domain": this.props.domain, "method": method })
-                    // const response = await fetch()
-                };console.log("before Fetch");
+            // console.log(method);
+            if (this.state.output === "") {
+                var domainToSend = this.checkDomain();
+                console.log("domainToSend: " + domainToSend);
+                if (domainToSend !== 2 && domainToSend !== false) {
+                    // console.log("this.props.domain: " + this.props.domain + " method: " + this.props.method);
+                    var requestData = {
+                        method: 'POST',
+                        headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ "domain": this.props.domain, "method": method })
+                        // const response = await fetch()
+                        // console.log("before Fetch")
 
-                // fetch('http://127.0.0.1:5000/', requestData)
-                fetch('https://scanner-webserver.herokuapp.com/', requestData)
-                // .then(response =>response.json())
-                .then(function (response) {
-                    return response.json();
-                }).then(function (json) {
-                    return _this7.processJson(json, method);
-                });
-                console.log("after fetch");
-            } else {
-                alert("invalid url, please enter a valid url");
+                        // fetch('http://127.0.0.1:5000/', requestData)
+                    };fetch('https://scanner-webserver.herokuapp.com/', requestData)
+                    // .then(response =>response.json())
+                    .then(function (response) {
+                        return response.json();
+                    }).then(function (json) {
+                        return _this8.processJson(json, method);
+                    });
+                    // console.log("after fetch")
+                } else if (domainToSend === 2) {
+                    alert("Please do not input http:// or https://");
+                } else {
+                    alert("Invalid url, please enter a valid url");
+                }
             }
             // console.log(response)
         }
     }, {
         key: "processJson",
         value: function processJson(json, method) {
-            var _this8 = this;
+            var _this9 = this;
 
             if (json.output === null) {
-                alert("invalid url, please enter a valid url");
+                alert("Server can't use that url, please enter a different url");
             } else {
                 var outputToSet = json.output.toString();
                 outputToSet = outputToSet.replace(/,/g, "\n");
                 this.setState({ output: outputToSet }, function () {
-                    return _this8.render();
+                    return _this9.render();
                 });
                 // alert(method + ": " + json.output);
-                console.log(method + ": " + json.output);
+                // console.log(method + ": " + json.output);
             }
         }
     }, {
         key: "render",
         value: function render() {
-            var _this9 = this;
+            var _this10 = this;
 
             // let method = this.props.method;
             if (this.state.domain !== this.props.domain) {
                 this.setState({ domain: this.props.domain, output: "" }, function () {
-                    return _this9.render();
+                    return _this10.render();
                 });
             }
             return React.createElement(
@@ -341,9 +406,9 @@ var MethodsButton = function (_React$Component5) {
                 React.createElement(
                     "button",
                     { className: "scanner_button", onClick: function onClick() {
-                            return _this9.handleClick(_this9.props.method);
+                            return _this10.handleClick(_this10.props.method);
                         } },
-                    this.props.method
+                    this.method_titles[this.props.method]
                 ),
                 React.createElement(
                     "p",
