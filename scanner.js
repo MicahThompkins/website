@@ -152,16 +152,14 @@ var MethodsList = function (_React$Component3) {
     function MethodsList(props) {
         _classCallCheck(this, MethodsList);
 
-        var _this4 = _possibleConstructorReturn(this, (MethodsList.__proto__ || Object.getPrototypeOf(MethodsList)).call(this, props));
-
-        console.log("In methods buttons props.domain: " + props.domain);
-        return _this4;
+        return _possibleConstructorReturn(this, (MethodsList.__proto__ || Object.getPrototypeOf(MethodsList)).call(this, props));
+        // console.log("In methods buttons props.domain: " + props.domain);
     }
 
     _createClass(MethodsList, [{
         key: "render",
         value: function render() {
-            console.log("in methods buttons render props.domain");
+            // console.log("in methods buttons render props.domain")
             return React.createElement(
                 "div",
                 { className: "scanner_methods_list" },
@@ -186,10 +184,8 @@ var MethodsListItem = function (_React$Component4) {
     function MethodsListItem(props) {
         _classCallCheck(this, MethodsListItem);
 
-        var _this5 = _possibleConstructorReturn(this, (MethodsListItem.__proto__ || Object.getPrototypeOf(MethodsListItem)).call(this, props));
-
-        console.log("In methods buttons props.domain: " + props.domain);
-        return _this5;
+        return _possibleConstructorReturn(this, (MethodsListItem.__proto__ || Object.getPrototypeOf(MethodsListItem)).call(this, props));
+        // console.log("In methods buttons props.domain: " + props.domain);
     }
 
     _createClass(MethodsListItem, [{
@@ -317,7 +313,7 @@ var MethodsButton = function (_React$Component6) {
             if (currDomain === "") {
                 return false;
             } else if (currDomain.substring(0, 7) === "http://" || currDomain.substring(0, 8) === "https://") {
-                console.log("in http://");
+                // console.log("in http://")
                 // return this.isValidUrl(currDomain);
 
                 return 2;
@@ -344,8 +340,11 @@ var MethodsButton = function (_React$Component6) {
 
             // console.log(method);
             if (this.state.output === "") {
+                this.setState({ output: "Loading..." }, function () {
+                    return _this8.render();
+                });
                 var domainToSend = this.checkDomain();
-                console.log("domainToSend: " + domainToSend);
+                // console.log("domainToSend: " + domainToSend);
                 if (domainToSend !== 2 && domainToSend !== false) {
                     // console.log("this.props.domain: " + this.props.domain + " method: " + this.props.method);
                     var requestData = {
@@ -365,8 +364,14 @@ var MethodsButton = function (_React$Component6) {
                     });
                     // console.log("after fetch")
                 } else if (domainToSend === 2) {
+                    this.setState({ output: "" }, function () {
+                        return _this8.render();
+                    });
                     alert("Please do not input http:// or https://");
                 } else {
+                    this.setState({ output: "" }, function () {
+                        return _this8.render();
+                    });
                     alert("Invalid url, please enter a valid url");
                 }
             }
@@ -378,6 +383,9 @@ var MethodsButton = function (_React$Component6) {
             var _this9 = this;
 
             if (json.output === null) {
+                this.setState({ output: "" }, function () {
+                    return _this9.render();
+                });
                 alert("Server can't use that url, please enter a different url");
             } else {
                 var outputToSet = json.output.toString();
@@ -389,6 +397,20 @@ var MethodsButton = function (_React$Component6) {
                 // console.log(method + ": " + json.output);
             }
         }
+        // static getDerivedStateFromProps(state, props){
+        //     console.log("in derived")
+        //     if (state.domain !== props.domain){
+        //         // console.log("in delete");
+        //         // this.setState({domain: props.domain, output:""}, ()=>this.render());
+        //         state.domain = props.domain;
+        //         state.output = "";
+        //         return {domain : props.domain, output : ""};
+        //     } else {
+        //         return {domain: props.domain, output: props.output}
+        //     }
+        //
+        // }
+
     }, {
         key: "render",
         value: function render() {

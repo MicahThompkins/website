@@ -117,10 +117,10 @@ class HeaderInfo extends React.Component{
 class MethodsList extends React.Component{
     constructor(props) {
         super(props);
-        console.log("In methods buttons props.domain: " + props.domain);
+        // console.log("In methods buttons props.domain: " + props.domain);
     }
     render() {
-        console.log("in methods buttons render props.domain")
+        // console.log("in methods buttons render props.domain")
         return (
             <div className="scanner_methods_list">
                 <MethodsListItem domain={this.props.domain} method='ipv4_addresses'/>
@@ -140,7 +140,7 @@ class MethodsList extends React.Component{
 class MethodsListItem extends React.Component{
     constructor(props) {
         super(props);
-        console.log("In methods buttons props.domain: " + props.domain);
+        // console.log("In methods buttons props.domain: " + props.domain);
     }
 
     render() {
@@ -238,7 +238,7 @@ class MethodsButton extends React.Component{
             return false;
         }
         else if( (currDomain.substring(0,7) === "http://") || currDomain.substring(0,8) === "https://" ){
-            console.log("in http://")
+            // console.log("in http://")
             // return this.isValidUrl(currDomain);
 
             return 2;
@@ -261,8 +261,9 @@ class MethodsButton extends React.Component{
     handleClick(method){
         // console.log(method);
         if(this.state.output === "") {
+            this.setState({output: "Loading..."}, () => this.render());
             let domainToSend = this.checkDomain();
-            console.log("domainToSend: " + domainToSend);
+            // console.log("domainToSend: " + domainToSend);
             if (domainToSend !== 2 && domainToSend !== false) {
                 // console.log("this.props.domain: " + this.props.domain + " method: " + this.props.method);
                 const requestData = {
@@ -281,9 +282,11 @@ class MethodsButton extends React.Component{
                     .then(json => this.processJson(json, method))
                 // console.log("after fetch")
             } else if (domainToSend === 2){
+                this.setState({output: ""}, () => this.render());
                 alert("Please do not input http:// or https://");
             }
             else {
+                this.setState({output: ""}, () => this.render());
                 alert("Invalid url, please enter a valid url");
             }
         }
@@ -292,6 +295,7 @@ class MethodsButton extends React.Component{
 
     processJson(json, method){
         if (json.output === null){
+            this.setState({output: ""}, () => this.render());
             alert("Server can't use that url, please enter a different url");
         } else{
             let outputToSet = json.output.toString();
@@ -302,6 +306,19 @@ class MethodsButton extends React.Component{
 
         }
     }
+    // static getDerivedStateFromProps(state, props){
+    //     console.log("in derived")
+    //     if (state.domain !== props.domain){
+    //         // console.log("in delete");
+    //         // this.setState({domain: props.domain, output:""}, ()=>this.render());
+    //         state.domain = props.domain;
+    //         state.output = "";
+    //         return {domain : props.domain, output : ""};
+    //     } else {
+    //         return {domain: props.domain, output: props.output}
+    //     }
+    //
+    // }
     render(){
         // let method = this.props.method;
         if (this.state.domain !== this.props.domain){
