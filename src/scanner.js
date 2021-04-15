@@ -113,8 +113,8 @@ class MethodsList extends React.Component{
                 <MethodsListItem domain={this.props.domain} method='ipv4_addresses'/>
                 <MethodsListItem domain={this.props.domain} method='ipv6_addresses'/>
                 <MethodsListItem domain={this.props.domain} method='rdns_names'/>
-                <MethodsListItem domain={this.props.domain} method='rtt_range'/>
-                <MethodsListItem domain={this.props.domain} method='tls_versions'/>
+                {/*<MethodsListItem domain={this.props.domain} method='rtt_range'/>*/}
+                {/*<MethodsListItem domain={this.props.domain} method='tls_versions'/>*/}
                 <MethodsListItem domain={this.props.domain} method='http_server'/>
                 <MethodsListItem domain={this.props.domain} method='insecure_http'/>
                 <MethodsListItem domain={this.props.domain} method='redirect_to_https'/>
@@ -142,17 +142,27 @@ class MethodsListItem extends React.Component{
 class MethodsButtonExplanation extends React.Component{
     constructor(props) {
         super(props);
+        /// Commented out because tls_versions and rtt_range currently not working
+        // this.method_explanations = {"ipv4_addresses": "A list of IPv4 addresses listed as DNS \"A\" records for the domain.",
+        //     "ipv6_addresses": "A list of IPv6 addresses listed as DNS \"AAAA\" records for the domain",
+        //     "rdns_names": "Lists the reverse dns names for the sites IPv4 addresses.",
+        //     "rtt_range": "Prints the shortest and longest round trip time (RTT) observed when contacting all the sites IPv4 addresses.",
+        //     "tls_versions": "Lists all versions of Transport Layer Security (TLS/SSL) supported by the server",
+        //     "http_server": "The web server software reported in the Server Header of the HTTP response. If there is no server header in the response \"No Server Header\" is shown.",
+        //     "insecure_http": "Returns a JSON boolean indicating whether the website listens for unencrypted HTTP requests on port 80.",
+        //     "redirect_to_https": "Returns a JSON boolean indicating whether unencrypted HTTP requests on port 80 are redirected to HTTPS requests on port 443. After 10 redirects, it gives up and says false.",
+        //     "hsts": "Returns a JSON boolean indicating whether the website has enabled HTTP Strict Transport Security",
+        //     "root_ca": "Lists the originization name of the root certificate authority (CA) at the base of the chain of trust for validating this server's public key.}"
+        // }
         this.method_explanations = {"ipv4_addresses": "A list of IPv4 addresses listed as DNS \"A\" records for the domain.",
             "ipv6_addresses": "A list of IPv6 addresses listed as DNS \"AAAA\" records for the domain",
             "rdns_names": "Lists the reverse dns names for the sites IPv4 addresses.",
-            "rtt_range": "Prints the shortest and longest round trip time (RTT) observed when contacting all the sites IPv4 addresses.",
-            "tls_versions": "Lists all versions of Transport Layer Security (TLS/SSL) supported by the server",
             "http_server": "The web server software reported in the Server Header of the HTTP response. If there is no server header in the response \"No Server Header\" is shown.",
             "insecure_http": "Returns a JSON boolean indicating whether the website listens for unencrypted HTTP requests on port 80.",
             "redirect_to_https": "Returns a JSON boolean indicating whether unencrypted HTTP requests on port 80 are redirected to HTTPS requests on port 443. After 10 redirects, it gives up and says false.",
             "hsts": "Returns a JSON boolean indicating whether the website has enabled HTTP Strict Transport Security",
             "root_ca": "Lists the originization name of the root certificate authority (CA) at the base of the chain of trust for validating this server's public key.}"
-    }
+        }
     }
     render() {
         return (
@@ -213,17 +223,19 @@ class MethodsButton extends React.Component{
             console.log("this.props.domain: " + this.props.domain + " method: " + this.props.method);
             const requestData = {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
+                headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
                 body: JSON.stringify({"domain": this.props.domain, "method": method})
 
             }
             // const response = await fetch()
             console.log("before Fetch")
-            fetch('http://127.0.0.1:5000/', requestData)
+
+            // fetch('http://127.0.0.1:5000/', requestData)
+            fetch('https://scanner-webserver.herokuapp.com/', requestData)
                 // .then(response =>response.json())
                 .then(response => response.json())
                 .then(json => this.processJson(json, method))
-            console.log("afte fetch")
+            console.log("after fetch")
         } else {
             alert("invalid url, please enter a valid url");
         }
