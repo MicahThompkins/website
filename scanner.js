@@ -219,7 +219,7 @@ var MethodsButtonExplanation = function (_React$Component5) {
         //     "insecure_http": "Returns a JSON boolean indicating whether the website listens for unencrypted HTTP requests on port 80.",
         //     "redirect_to_https": "Returns a JSON boolean indicating whether unencrypted HTTP requests on port 80 are redirected to HTTPS requests on port 443. After 10 redirects, it gives up and says false.",
         //     "hsts": "Returns a JSON boolean indicating whether the website has enabled HTTP Strict Transport Security",
-        //     "root_ca": "Lists the originization name of the root certificate authority (CA) at the base of the chain of trust for validating this server's public key.}"
+        //     "root_ca": "Lists the organization name of the root certificate authority (CA) at the base of the chain of trust for validating this server's public key.}"
         // }
         var _this6 = _possibleConstructorReturn(this, (MethodsButtonExplanation.__proto__ || Object.getPrototypeOf(MethodsButtonExplanation)).call(this, props));
 
@@ -230,7 +230,7 @@ var MethodsButtonExplanation = function (_React$Component5) {
             "insecure_http": "Returns a JSON boolean indicating whether the website listens for unencrypted HTTP requests on port 80.",
             "redirect_to_https": "Returns a JSON boolean indicating whether unencrypted HTTP requests on port 80 are redirected to HTTPS requests on port 443. After 10 redirects, it gives up and says false.",
             "hsts": "Returns a JSON boolean indicating whether the website has enabled HTTP Strict Transport Security",
-            "root_ca": "Lists the originization name of the root certificate authority (CA) at the base of the chain of trust for validating this server's public key."
+            "root_ca": "Lists the organization name of the root certificate authority (CA) at the base of the chain of trust for validating this server's public key."
         };
         return _this6;
     }
