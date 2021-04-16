@@ -17,8 +17,8 @@
   display: flex;
   justify-content: center;
   margin: auto;
-  width: 375px;
-  padding-left: 3%;
+  width: 550px;
+  /*padding-left: 3%;*/
   /* TODO check to see if this is weird looking*/
 
 }
@@ -60,6 +60,7 @@
 .topnav .icon {
   display: none;
 }
+
 @media screen and (max-width: 320px){
   .topnav {
     width: 320px;
