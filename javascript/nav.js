@@ -14,8 +14,9 @@ function setClassesToHidden(){
     if (document.getElementsByClassName('topnav_shown').length > 0) {
         document.querySelector('.topnav_shown').className = "topnav";
     }
-
-    document.querySelector('.persistent_shown').className = "persistent";
+    if (document.getElementsByClassName('persistent_shown').length > 0) {
+        document.querySelector('.persistent_shown').className = "persistent";
+    }
 }
 function myFunction() {
     // let x = document.getElementById("myTopnav");
