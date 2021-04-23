@@ -1,0 +1,153 @@
+.topnav {
+    background-color: var(--black);
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    /*margin: auto;*/
+    /*width: 550px;*/
+
+
+    /*padding-left: 3%;*/
+    /* TODO check to see if this is weird looking*/
+
+}
+.topnav_shown {
+    display: grid;
+}
+
+.persistent{
+    float: right;
+    display: block;
+    color: var(--white);
+    text-align: center;
+    padding: 14px 10px;
+    text-decoration: none;
+    font-size: 20px;
+}
+.persistent_shown{
+    float: none;
+    display: block;
+    text-align: center;
+    /*float: left;*/
+    /*display: block;*/
+    color: var(--white);
+    /*text-align: center;*/
+    /*padding: 14px 10px;*/
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    font-size: 20px;
+}
+.persistent:hover{
+    /*background-color: var(--white);*/
+    color: var(--black);
+    background-color: grey;
+    /* border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px; */
+    /*border-radius: 10px;*/
+}
+.persistent_shown:hover{
+    /*background-color: var(--white);*/
+    color: var(--black);
+    background-color: grey;
+    /* border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px; */
+    /*border-radius: 10px;*/
+}
+
+.nav_options_hidden{
+    /*position: absolute !important;*/
+    /*top: -9999px !important;*/
+    /*left: -9999px !important;*/
+    display: none;
+}
+.nav_options_shown{
+    float: none;
+    display: block;
+    text-align: center;
+    /*float: left;*/
+    /*display: block;*/
+    color: var(--white);
+    /*text-align: center;*/
+    /*padding: 14px 10px;*/
+    padding-bottom: 10px;
+    padding-top: 10px;
+    text-decoration: none;
+    font-size: 20px;
+}
+.nav_options_shown:hover {
+    background-color: grey;
+    color: var(--black);
+    /* border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px; */
+    /*border-radius: 10px;*/
+}
+#icon_to_hide{
+    /*float: left;*/
+    /*display: block;*/
+    position: absolute;
+    right: 5px;
+    top: 0;
+    color: var(--white);
+    text-align: center;
+    padding: 14px 10px;
+    text-decoration: none;
+    font-size: 20px;
+}
+/*.topnav_small_screens{*/
+/*    visibility: hidden;*/
+/*    display: none;*/
+/*}*/
+/*.topnav_small_screens_persistent{*/
+/*    display: none;*/
+/*}*/
+/*.topnav_small_screens_other{*/
+/*    display: none;*/
+/*}*/
+@media screen and (min-width: 600px) {
+    .topnav {
+        background-color: var(--black);
+        overflow: hidden;
+
+        display: flex;
+        justify-content: center;
+        /*margin: auto;*/
+        /*width: 550px;*/
+
+
+        /*padding-left: 3%;*/
+        /* TODO check to see if this is weird looking*/
+
+    }
+
+    .topnav a {
+        float: left;
+        display: block;
+        color: var(--white);
+        text-align: center;
+        padding: 14px 10px;
+        text-decoration: none;
+        font-size: 20px;
+
+    }
+
+    /* Change the color of links on hover */
+    .topnav a:hover {
+        background-color: var(--white);
+        color: var(--black);
+        /* border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px; */
+        border-radius: 10px;
+    }
+    .topnav a:hover {
+        background-color: var(--white);
+        color: var(--black);
+        /* border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px; */
+        border-radius: 10px;
+    }
+    #icon_to_hide{
+        display: none;
+    }
+}
