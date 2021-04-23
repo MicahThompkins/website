@@ -59,3 +59,15 @@
     width:60%;
     color:var(--white);
 }
+/*@media screen and (max-width: 480px){*/
+/*    .scanner_methods_list {*/
+/*        width: 92%;*/
+
+/*    }*/
+/*    .methods_button_explanation_container{*/
+/*        width: 50%*/
+/*    }*/
+/*    .method_button_and_output{*/
+/*        width: 50%;*/
+/*    }*/
+/*}*/
