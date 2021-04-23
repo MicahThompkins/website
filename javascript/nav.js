@@ -5,11 +5,9 @@ window.addEventListener('load', function () {
         resizedOver600 = true;
     }
 })
-// onLoad();
 function setClassesToHidden(){
     document.querySelectorAll('.nav_options_shown').forEach( elem => {
         elem.className = "nav_options_hidden";
-        // elem.setAttribute("display", "none");
     });
     if (document.getElementsByClassName('topnav_shown').length > 0) {
         document.querySelector('.topnav_shown').className = "topnav";
@@ -19,12 +17,6 @@ function setClassesToHidden(){
     }
 }
 function myFunction() {
-    // let x = document.getElementById("myTopnav");
-    // if (x.className === "topnav") {
-    //     x.className += " responsive";
-    // } else {
-    //     x.className = "topnav";
-    // }
     if (isOpen){
         setClassesToHidden();
         isOpen = false;
@@ -39,7 +31,6 @@ function myFunction() {
     console.log("placeholder");
 }
 window.addEventListener("resize", function(event) {
-    // console.log(document.body.clientWidth + ' wide by ' + document.body.clientHeight+' high');
     if (document.body.clientWidth >= 600 && resizedOver600 === false){
         setClassesToHidden();
         resizedOver600 = true;

@@ -24,69 +24,6 @@ var ScannerApp = function (_React$Component) {
         };
         return _this;
     }
-    // isValidUrl(inputUrl){
-    //     if(inputUrl.includes(".")) {
-    //         try {
-    //             const url = new URL(inputUrl)
-    //             if (url.protocol === "http:" || url.protocol === "https:") {
-    //                 return url.hostname;
-    //             } else{
-    //                 return false;
-    //             }
-    //         } catch (TypeError) {
-    //             return false;
-    //         }
-    //     } else{
-    //         return false;
-    //     }
-    // }
-    // checkDomain(){
-    //     //TODO add more in depth error checking
-    //     let currDomain = this.state.domain
-    //     if (currDomain === ""){
-    //         return false;
-    //     } else if( (currDomain.substring(0,7) === "http://") || currDomain.substring(0,8) === "https://" ){
-    //         return this.isValidUrl(currDomain);
-    //     } else {
-    //         currDomain = "http://" + currDomain;
-    //         return this.isValidUrl(currDomain);
-    //     }
-    // }
-    // handleClick(button){
-    //     console.log(button);
-    //     let domainToSend = this.checkDomain();
-    //     if (domainToSend) {
-    //         const requestData = {
-    //             method: 'POST',
-    //             headers: {'Content-Type': 'application/json'},
-    //             body: JSON.stringify({"domain": this.state.domain, "method": button})
-    //
-    //         }
-    //         // const response = await fetch()
-    //         console.log("before Fetch")
-    //         fetch('http://127.0.0.1:5000/', requestData)
-    //             // .then(response =>response.json())
-    //             .then(response => response.json())
-    //             .then(json => this.processJson(json, button))
-    //         console.log("afte fetch")
-    //     } else {
-    //         alert("invalid url, please enter a valid url");
-    //     }
-    //         // console.log(response)
-    // }
-    //
-    // processJson(json, button){
-    //     console.log("json.output type: " + typeof json.output);
-    //     // if(json.output){
-    //     //     console.log("if json output is true");
-    //     // }
-    //     if (json.output === null || json.output === {}){
-    //         alert("invalid url, please enter a valid url");
-    //     } else{
-    //         alert(button + ": " + json.output);
-    //     }
-    // }
-
 
     _createClass(ScannerApp, [{
         key: "setDomain",
@@ -318,18 +255,6 @@ var MethodsButton = function (_React$Component6) {
 
                 return 2;
             }
-            //else {
-            //         //     currDomain = "http://" + currDomain;
-            //         //     return this.isValidUrl(currDomain);
-            //         // }
-            // if (currDomain.substring(0,7) === "http://"){
-            //     currDomain = currDomain.substring(7);
-            //     console.log("strippedString: " + currDomain);
-            // }
-            // if (currDomain.substring(0,8) === "https://" ){
-            //     currDomain = currDomain.substring(8);
-            //     console.log("strippedString: " + currDomain);
-            // }
             currDomain = "http://" + currDomain;
             return this.isValidUrl(currDomain);
         }
@@ -397,20 +322,6 @@ var MethodsButton = function (_React$Component6) {
                 // console.log(method + ": " + json.output);
             }
         }
-        // static getDerivedStateFromProps(state, props){
-        //     console.log("in derived")
-        //     if (state.domain !== props.domain){
-        //         // console.log("in delete");
-        //         // this.setState({domain: props.domain, output:""}, ()=>this.render());
-        //         state.domain = props.domain;
-        //         state.output = "";
-        //         return {domain : props.domain, output : ""};
-        //     } else {
-        //         return {domain: props.domain, output: props.output}
-        //     }
-        //
-        // }
-
     }, {
         key: "render",
         value: function render() {
@@ -443,6 +354,5 @@ var MethodsButton = function (_React$Component6) {
 
     return MethodsButton;
 }(React.Component);
-// class MethodsButtonOutput
 
 ReactDOM.render(React.createElement(ScannerApp, null), rootElement);

@@ -9,68 +9,6 @@ class ScannerApp extends React.Component{
             domain: "", method: ""
         }
     }
-    // isValidUrl(inputUrl){
-    //     if(inputUrl.includes(".")) {
-    //         try {
-    //             const url = new URL(inputUrl)
-    //             if (url.protocol === "http:" || url.protocol === "https:") {
-    //                 return url.hostname;
-    //             } else{
-    //                 return false;
-    //             }
-    //         } catch (TypeError) {
-    //             return false;
-    //         }
-    //     } else{
-    //         return false;
-    //     }
-    // }
-    // checkDomain(){
-    //     //TODO add more in depth error checking
-    //     let currDomain = this.state.domain
-    //     if (currDomain === ""){
-    //         return false;
-    //     } else if( (currDomain.substring(0,7) === "http://") || currDomain.substring(0,8) === "https://" ){
-    //         return this.isValidUrl(currDomain);
-    //     } else {
-    //         currDomain = "http://" + currDomain;
-    //         return this.isValidUrl(currDomain);
-    //     }
-    // }
-    // handleClick(button){
-    //     console.log(button);
-    //     let domainToSend = this.checkDomain();
-    //     if (domainToSend) {
-    //         const requestData = {
-    //             method: 'POST',
-    //             headers: {'Content-Type': 'application/json'},
-    //             body: JSON.stringify({"domain": this.state.domain, "method": button})
-    //
-    //         }
-    //         // const response = await fetch()
-    //         console.log("before Fetch")
-    //         fetch('http://127.0.0.1:5000/', requestData)
-    //             // .then(response =>response.json())
-    //             .then(response => response.json())
-    //             .then(json => this.processJson(json, button))
-    //         console.log("afte fetch")
-    //     } else {
-    //         alert("invalid url, please enter a valid url");
-    //     }
-    //         // console.log(response)
-    // }
-    //
-    // processJson(json, button){
-    //     console.log("json.output type: " + typeof json.output);
-    //     // if(json.output){
-    //     //     console.log("if json output is true");
-    //     // }
-    //     if (json.output === null || json.output === {}){
-    //         alert("invalid url, please enter a valid url");
-    //     } else{
-    //         alert(button + ": " + json.output);
-    //     }
-    // }
     setDomain(event){
         this.setState({domain: event.target.value}, () => this.render());
     }
@@ -81,22 +19,6 @@ class ScannerApp extends React.Component{
                 <HeaderInfo/>
                 <input id="domain_input" type="text" value = {this.state.domain} onChange={this.setDomain}/>
                 <MethodsList domain = {this.state.domain}/>
-                {/*<div className="scanner_buttons">*/}
-                {/*    <button className="scanner_buttons" onClick={() => this.handleClick('ipv4_addresses')}>IPv4</button>*/}
-                {/*    <button className="scanner_buttons" onClick={() => this.handleClick('ipv6_addresses')}>IPv6</button>*/}
-                {/*    <button className="scanner_buttons" onClick={() => this.handleClick('rdns_names')}>RDNS</button>*/}
-                {/*    <button className="scanner_buttons" onClick={() => this.handleClick('rtt_range')}>Round Trip Range</button>*/}
-                {/*    <button className="scanner_buttons" onClick={() => this.handleClick('tls_versions')}>TLS</button>*/}
-                {/*    <button className="scanner_buttons" onClick={() => this.handleClick('http_server')}>HTTP Server Name</button>*/}
-                {/*    <button className="scanner_buttons" onClick={() => this.handleClick('insecure_http')}>Responds to HTTP</button>*/}
-                {/*    <button className="scanner_buttons" onClick={() => this.handleClick('redirect_to_https')}>Redirects to HTTPS</button>*/}
-                {/*    <button className="scanner_buttons" onClick={() => this.handleClick('hsts')}>HSTS</button>*/}
-                {/*    <button className="scanner_buttons" onClick={() => this.handleClick('root_ca')}>Root Certificate Authority</button>*/}
-                {/*</div>*/}
-
-                {/*<div className ="output_div_container">*/}
-                {/*    <Output output = {this.state.output} method = {this.state.method}/>*/}
-                {/*</div>*/}
             </div>
         )
     }
@@ -243,18 +165,6 @@ class MethodsButton extends React.Component{
 
             return 2;
         }
-        //else {
-        //         //     currDomain = "http://" + currDomain;
-        //         //     return this.isValidUrl(currDomain);
-        //         // }
-        // if (currDomain.substring(0,7) === "http://"){
-        //     currDomain = currDomain.substring(7);
-        //     console.log("strippedString: " + currDomain);
-        // }
-        // if (currDomain.substring(0,8) === "https://" ){
-        //     currDomain = currDomain.substring(8);
-        //     console.log("strippedString: " + currDomain);
-        // }
         currDomain = "http://" + currDomain;
         return this.isValidUrl(currDomain);
     }
@@ -306,19 +216,6 @@ class MethodsButton extends React.Component{
 
         }
     }
-    // static getDerivedStateFromProps(state, props){
-    //     console.log("in derived")
-    //     if (state.domain !== props.domain){
-    //         // console.log("in delete");
-    //         // this.setState({domain: props.domain, output:""}, ()=>this.render());
-    //         state.domain = props.domain;
-    //         state.output = "";
-    //         return {domain : props.domain, output : ""};
-    //     } else {
-    //         return {domain: props.domain, output: props.output}
-    //     }
-    //
-    // }
     render(){
         // let method = this.props.method;
         if (this.state.domain !== this.props.domain){
@@ -333,7 +230,7 @@ class MethodsButton extends React.Component{
         )
     }
 }
-// class MethodsButtonOutput
+
 
 ReactDOM.render(
     <ScannerApp/>,

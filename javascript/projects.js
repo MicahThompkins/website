@@ -17,12 +17,8 @@ var tcp_index = 3
 function replace_projects_display(index){
   document.getElementById("project_title").innerHTML = titles_arr[index]
   replace_description(descriptions_arr[index])
-  // document.getElementById("description_text").innerHTML = descriptions_arr[index]
   document.getElementById("role_text").innerHTML = roles_arr[index]
   replace_link(index)
-//   document.getElementById("project_link").innerHTML = links_arr[index]
-  // document.getElementById("project_photo1").src = photos_arr[index][0]
-  // document.getElementById("project_photo2").src = photos_arr[index][1]
 }
 function replace_description(desc_arr){
   var desc_id = "description_text";
