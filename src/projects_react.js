@@ -1,6 +1,10 @@
 // const lement = <h1>Hello, world</h1>;
 // ReactDOM.render(element, document.getElementById('projects_react_container'));
 const rootElement = document.getElementById('projects_react_container');
+
+/**
+ * ProjectsApp is the entire container for the projects web page. This component contains onClick methods for all the projects.
+ */
 class ProjectsApp extends React.Component{
     constructor(props) {
         super(props);
@@ -11,6 +15,9 @@ class ProjectsApp extends React.Component{
         this.handleTCPClick = this.handleTCPClick.bind(this);
         this.handleSearchClick = this.handleSearchClick.bind(this);
         this.handleWebsiteClick = this.handleWebsiteClick.bind(this);
+        /** state.active: is used to control the active state of the App. state.buttons: is used to change the className
+         * and css/dispkay of the buttons based upon which button is active
+         **/
         this.state = {
             active : "App",
             buttons: {"App": "project_title_button_active", "Go": "project_title_button", "Scanner": "project_title_button",
@@ -19,11 +26,17 @@ class ProjectsApp extends React.Component{
         }
 
     }
+
+    /**
+     * This method is used to handle a click on each option. Whichever option is clicked this method then adjusts the
+     * state.buttons dictionary so that the input method is now the active
+     * @param type of the project that is now active
+     */
     handleClick(type){
         let newButtons = this.state.buttons;
         newButtons[this.state.active] = "project_title_button";
         newButtons[type] = "project_title_button_active";
-        this.setState({active: type}, () => this.render());
+        this.setState({active: type, buttons: newButtons}, () => this.render());
         console.log(type);
     }
     handleAppClick(){
@@ -47,10 +60,8 @@ class ProjectsApp extends React.Component{
 
 
     render(){
-        console.log("rendering projects app");
         return (
             <div className="projectApp">
-
                 <div className="project_titles">
                     <button className={this.state.buttons["App"]} onClick={this.handleAppClick}>App</button>
                     <button className={this.state.buttons["Go"]} onClick={this.handleGoClick}>Go</button>
@@ -60,7 +71,6 @@ class ProjectsApp extends React.Component{
                     <button className={this.state.buttons["Website"]} onClick={this.handleWebsiteClick}>Website</button>
                 </div>
                 <div className="projectInfoBody">
-                    {/*<h1 id="projects_header">Projects</h1>*/}
                     <ProjectInfoBody active={this.state.active}/>
                 </div>
             </div>
@@ -68,6 +78,10 @@ class ProjectsApp extends React.Component{
     }
 }
 
+/**
+ * Component that contains all the subcomponents that describe everything related to the project and if the project has an interactive, the interactive
+ * props: active: the active project name
+ */
 class ProjectInfoBody extends React.Component {
     constructor(props) {
         super(props);
@@ -84,6 +98,11 @@ class ProjectInfoBody extends React.Component {
         )
     }
 }
+
+/**
+ * The component that changes the title based on the active project passed in the props. Uses a dictionary of titles keyed
+ * on the active project shortname
+ */
 class ProjectTitle extends React.Component{
     constructor(props){
         super(props);
@@ -107,6 +126,11 @@ class ProjectTitle extends React.Component{
         )
     }
 }
+
+/**
+ * The component that changes the description based on the active project passed in the props. Uses a dictionary of descriptions
+ * keyed on the active project shortname.
+ */
 class ProjectDescription extends React.Component{
     constructor(props){
         super(props);
@@ -137,6 +161,11 @@ class ProjectDescription extends React.Component{
         )
     }
 }
+
+/**
+ * The component that changes the role based on the active project passed in the props. Uses a dictionary of roles
+ * keyed on the active project shortname.
+ */
 class ProjectRole extends React.Component{
     constructor(props){
         super(props);
@@ -161,6 +190,11 @@ class ProjectRole extends React.Component{
         )
     }
 }
+
+/**
+ * The component that changes the link based on the active project passed in the props. Uses a dictionary of linkss
+ * keyed on the active project shortname.
+ */
 class ProjectLink extends React.Component{
     constructor(props){
         super(props);
@@ -177,6 +211,7 @@ class ProjectLink extends React.Component{
         };
 
     }
+    /** This render method conditionally renders because there is no link for the TCP project**/
     render (){
         if (this.props.active !=="TCP") {
             return (

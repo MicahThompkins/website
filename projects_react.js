@@ -10,6 +10,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // ReactDOM.render(element, document.getElementById('projects_react_container'));
 var rootElement = document.getElementById('projects_react_container');
 
+/**
+ * ProjectsApp is the entire container for the projects web page. This component contains onClick methods for all the projects.
+ */
+
 var ProjectsApp = function (_React$Component) {
     _inherits(ProjectsApp, _React$Component);
 
@@ -25,6 +29,9 @@ var ProjectsApp = function (_React$Component) {
         _this.handleTCPClick = _this.handleTCPClick.bind(_this);
         _this.handleSearchClick = _this.handleSearchClick.bind(_this);
         _this.handleWebsiteClick = _this.handleWebsiteClick.bind(_this);
+        /** state.active: is used to control the active state of the App. state.buttons: is used to change the className
+         * and css/dispkay of the buttons based upon which button is active
+         **/
         _this.state = {
             active: "App",
             buttons: { "App": "project_title_button_active", "Go": "project_title_button", "Scanner": "project_title_button",
@@ -35,6 +42,13 @@ var ProjectsApp = function (_React$Component) {
         return _this;
     }
 
+    /**
+     * This method is used to handle a click on each option. Whichever option is clicked this method then adjusts the
+     * state.buttons dictionary so that the input method is now the active
+     * @param type of the project that is now active
+     */
+
+
     _createClass(ProjectsApp, [{
         key: "handleClick",
         value: function handleClick(type) {
@@ -43,7 +57,7 @@ var ProjectsApp = function (_React$Component) {
             var newButtons = this.state.buttons;
             newButtons[this.state.active] = "project_title_button";
             newButtons[type] = "project_title_button_active";
-            this.setState({ active: type }, function () {
+            this.setState({ active: type, buttons: newButtons }, function () {
                 return _this2.render();
             });
             console.log(type);
@@ -81,7 +95,6 @@ var ProjectsApp = function (_React$Component) {
     }, {
         key: "render",
         value: function render() {
-            console.log("rendering projects app");
             return React.createElement(
                 "div",
                 { className: "projectApp" },
@@ -131,6 +144,12 @@ var ProjectsApp = function (_React$Component) {
     return ProjectsApp;
 }(React.Component);
 
+/**
+ * Component that contains all the subcomponents that describe everything related to the project and if the project has an interactive, the interactive
+ * props: active: the active project name
+ */
+
+
 var ProjectInfoBody = function (_React$Component2) {
     _inherits(ProjectInfoBody, _React$Component2);
 
@@ -157,6 +176,12 @@ var ProjectInfoBody = function (_React$Component2) {
 
     return ProjectInfoBody;
 }(React.Component);
+
+/**
+ * The component that changes the title based on the active project passed in the props. Uses a dictionary of titles keyed
+ * on the active project shortname
+ */
+
 
 var ProjectTitle = function (_React$Component3) {
     _inherits(ProjectTitle, _React$Component3);
@@ -194,6 +219,12 @@ var ProjectTitle = function (_React$Component3) {
 
     return ProjectTitle;
 }(React.Component);
+
+/**
+ * The component that changes the description based on the active project passed in the props. Uses a dictionary of descriptions
+ * keyed on the active project shortname.
+ */
+
 
 var ProjectDescription = function (_React$Component4) {
     _inherits(ProjectDescription, _React$Component4);
@@ -252,6 +283,12 @@ var ProjectDescription = function (_React$Component4) {
     return ProjectDescription;
 }(React.Component);
 
+/**
+ * The component that changes the role based on the active project passed in the props. Uses a dictionary of roles
+ * keyed on the active project shortname.
+ */
+
+
 var ProjectRole = function (_React$Component5) {
     _inherits(ProjectRole, _React$Component5);
 
@@ -294,6 +331,12 @@ var ProjectRole = function (_React$Component5) {
     return ProjectRole;
 }(React.Component);
 
+/**
+ * The component that changes the link based on the active project passed in the props. Uses a dictionary of linkss
+ * keyed on the active project shortname.
+ */
+
+
 var ProjectLink = function (_React$Component6) {
     _inherits(ProjectLink, _React$Component6);
 
@@ -312,6 +355,8 @@ var ProjectLink = function (_React$Component6) {
 
         return _this7;
     }
+    /** This render method conditionally renders because there is no link for the TCP project**/
+
 
     _createClass(ProjectLink, [{
         key: "render",

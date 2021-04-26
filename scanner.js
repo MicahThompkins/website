@@ -8,22 +8,27 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var rootElement = document.getElementById('scanner_react_container');
 
+/**
+ * The component that contains the entire Scanner app. The state to be managed and passed down as props is the current
+ * input in the domain box
+ */
+
 var ScannerApp = function (_React$Component) {
     _inherits(ScannerApp, _React$Component);
 
     function ScannerApp(props) {
         _classCallCheck(this, ScannerApp);
 
-        // this.handleCLick = this.handleClick.bind(this);
         var _this = _possibleConstructorReturn(this, (ScannerApp.__proto__ || Object.getPrototypeOf(ScannerApp)).call(this, props));
 
         _this.setDomain = _this.setDomain.bind(_this);
-        // this.processJson = this.processJson.bind(this);
         _this.state = {
             domain: "", method: ""
         };
         return _this;
     }
+    /** method called onchange of the text input to set the state and rerender the component**/
+
 
     _createClass(ScannerApp, [{
         key: "setDomain",
@@ -49,6 +54,11 @@ var ScannerApp = function (_React$Component) {
 
     return ScannerApp;
 }(React.Component);
+
+/**
+ * The component that renders the header of the web app doesnt take in props.
+ */
+
 
 var HeaderInfo = function (_React$Component2) {
     _inherits(HeaderInfo, _React$Component2);
@@ -80,7 +90,11 @@ var HeaderInfo = function (_React$Component2) {
     }]);
 
     return HeaderInfo;
-}(React.Component); // function MethodsButtons(props){
+}(React.Component);
+
+/**
+ * The component that contains all the MethodList items. props.domain is the current domain input
+ */
 
 
 var MethodsList = function (_React$Component3) {
@@ -115,6 +129,11 @@ var MethodsList = function (_React$Component3) {
     return MethodsList;
 }(React.Component);
 
+/**
+ * Component that contains the explanation component and button/output component. props.domain is the current domain input
+ */
+
+
 var MethodsListItem = function (_React$Component4) {
     _inherits(MethodsListItem, _React$Component4);
 
@@ -139,6 +158,12 @@ var MethodsListItem = function (_React$Component4) {
 
     return MethodsListItem;
 }(React.Component);
+
+/**
+ * Contains the method explanation. A dictonary of explanations that's keyed on the method names nad uses that dictonary
+ * with the props.method to display the explanation about the method passed in.
+ */
+
 
 var MethodsButtonExplanation = function (_React$Component5) {
     _inherits(MethodsButtonExplanation, _React$Component5);
@@ -190,6 +215,11 @@ var MethodsButtonExplanation = function (_React$Component5) {
     return MethodsButtonExplanation;
 }(React.Component);
 
+/**
+ * The Button and output component. Contains a button labeled by methods shortname keyed to the inputs given by props.method, props.domain is the current domain input
+ */
+
+
 var MethodsButton = function (_React$Component6) {
     _inherits(MethodsButton, _React$Component6);
 
@@ -215,6 +245,13 @@ var MethodsButton = function (_React$Component6) {
         };
         return _this7;
     }
+    /**
+     * This method checks to see if the url passed in contains a period and doesnt error when creating a url object. If
+     * both conditions are true it returns the hostname
+     * @param inputUrl: the url to check
+     * @returns {string|boolean}: the hostname if conditions are true otherwise false
+     */
+
 
     _createClass(MethodsButton, [{
         key: "isValidUrl",
@@ -222,11 +259,11 @@ var MethodsButton = function (_React$Component6) {
 
             if (inputUrl.includes(".")) {
                 try {
-                    console.log("inputUrl: " + inputUrl);
+                    // console.log("inputUrl: " + inputUrl)
                     var url = new URL(inputUrl);
                     if (url.protocol === "http:" || url.protocol === "https:") {
-                        console.log(url.hostname);
-                        console.log("length: " + url.hostname.length);
+                        // console.log(url.hostname)
+                        // console.log("length: "+ url.hostname.length)
                         var returnString = url.hostname;
                         // return url.hostname;
                         return returnString;
@@ -240,10 +277,17 @@ var MethodsButton = function (_React$Component6) {
                 return false;
             }
         }
+
+        /** method to check to make sure the inputted domain is an acceptable format
+         * Checks the passed in domain from props.domain, if the domain is empty returns false. if it begins with http:// or
+         * https:// return 2 to tell handleclick it has http, if neither are then prepend http:// and return the value of
+         * isValidUrl
+         * @returns {string|boolean|number}
+         */
+
     }, {
         key: "checkDomain",
         value: function checkDomain() {
-            //TODO add more in depth error checking
 
             var currDomain = this.props.domain;
             // console.log(this.props.domain)
@@ -258,6 +302,12 @@ var MethodsButton = function (_React$Component6) {
             currDomain = "http://" + currDomain;
             return this.isValidUrl(currDomain);
         }
+
+        /**
+         * Function that checks the domain and then if it is valid sends it to the webserver with the given method
+         * @param method the method that is calling the function
+         */
+
     }, {
         key: "handleClick",
         value: function handleClick(method) {
@@ -285,7 +335,7 @@ var MethodsButton = function (_React$Component6) {
                     .then(function (response) {
                         return response.json();
                     }).then(function (json) {
-                        return _this8.processJson(json, method);
+                        return _this8.processJson(json);
                     });
                     // console.log("after fetch")
                 } else if (domainToSend === 2) {
@@ -302,9 +352,15 @@ var MethodsButton = function (_React$Component6) {
             }
             // console.log(response)
         }
+
+        /**
+         * method used to handles the json received from the webserver
+         * @param json the JSON output from the webserver to be processed and set to the output
+         */
+
     }, {
         key: "processJson",
-        value: function processJson(json, method) {
+        value: function processJson(json) {
             var _this9 = this;
 
             if (json.output === null) {
@@ -322,17 +378,23 @@ var MethodsButton = function (_React$Component6) {
                 // console.log(method + ": " + json.output);
             }
         }
+
+        /**
+         * This changes the output of the methods if the domain is changed
+         * @param props
+         * @param state
+         * @returns {{output: string, domain}|null}
+         */
+
     }, {
         key: "render",
         value: function render() {
             var _this10 = this;
 
             // let method = this.props.method;
-            if (this.state.domain !== this.props.domain) {
-                this.setState({ domain: this.props.domain, output: "" }, function () {
-                    return _this10.render();
-                });
-            }
+            // if (this.state.domain !== this.props.domain){
+            //     this.setState({domain: this.props.domain, output:""}, ()=>this.render());
+            // }
             return React.createElement(
                 "div",
                 { className: "method_button_and_output" },
@@ -349,6 +411,15 @@ var MethodsButton = function (_React$Component6) {
                     this.state.output
                 )
             );
+        }
+    }], [{
+        key: "getDerivedStateFromProps",
+        value: function getDerivedStateFromProps(props, state) {
+            if (props.domain !== state.domain) {
+                return { domain: props.domain, output: "" };
+            } else {
+                return null;
+            }
         }
     }]);
 
