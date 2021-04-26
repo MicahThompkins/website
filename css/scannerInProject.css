@@ -3,6 +3,9 @@
     display: block;
     margin: auto auto 3%;
 }
+.ScannerApp{
+    margin-top: 50px;
+}
 .header_info{
     width: 100%;
     margin: auto;
