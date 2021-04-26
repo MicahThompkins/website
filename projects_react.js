@@ -33,8 +33,8 @@ var ProjectsApp = function (_React$Component) {
          * and css/dispkay of the buttons based upon which button is active
          **/
         _this.state = {
-            active: "App",
-            buttons: { "App": "project_title_button_active", "Go": "project_title_button", "Scanner": "project_title_button",
+            active: "Scanner",
+            buttons: { "App": "project_title_button", "Go": "project_title_button", "Scanner": "project_title_button_active",
                 "Search": "project_title_button", "TCP": "project_title_button", "Website": "project_title_button"
             }
         };
